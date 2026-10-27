@@ -17,7 +17,8 @@
 | Phase 3-5a セリフと COMMS 欄 | ✅ 2026-10-27（Issue #9・ADR 0009） |
 | Phase 3-5b 専用の色・派手な演出 | ✅ 2026-10-27（Issue #11・ADR 0010） |
 | Phase 3-5c ハイスコアのファイル・大きな端末の配置 | ✅ 2026-10-27（Issue #13・ADR 0011） |
-| Phase 4 公開 | 🔲 別 Issue |
+| Phase 4 公開の準備 | ✅ 2026-10-27（Issue #15・ADR 0012・`make release` は再現可能） |
+| Phase 4 公開（v0.1.0 のタグと Release） | ⏸ 施主の確認待ち |
 
 ## 動くもの
 
@@ -28,10 +29,11 @@
 ## 動かないもの
 
 - `main` への直接 push・force push が拒まれることは試していない（ruleset の読み戻しと PR の `BLOCKED` で代えた・gate-proofs 第 4 節）
-- 公開の経路（Phase 4）
+- Release の公開（施主の確認待ち）
 - Windows Terminal での見え方の確認（Phase 3-3。撮影の権限待ち）
 
 ## 次の 1 手
 
-Phase 4（公開の準備）: Igo から版の入力（`Version.swift`・`--version`）・`make release`・成果物の検査・`install.sh`・`install.ps1` を移植し、
-README（英語が正・`README.ja.md`）を書く。README の先頭の実機の画面写真は Phase 3-3 と一緒に。**Release の公開は施主の確認を取ってから**。
+施主の手番: (1) 実機の画面写真（Phase 3-3）の撮り方を決める（撮影の許可のルールを足すか、施主が Windows Terminal で見る）。
+(2) v0.1.0 の公開の可否。公開するときは ADR 0012 の決定 6 の手順で、clean な main から作り直してタグと Release を作り、再ダウンロードして照合し、
+`install.sh` と `install.ps1` の 1 行からの導入を確かめる。

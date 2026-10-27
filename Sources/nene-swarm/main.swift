@@ -1,13 +1,19 @@
 // 合成ルート（ARC-006）。時計・乱数・環境・起動オプションを読み（ARC-007）、Core・Engine・Render・Terminal を組み立てて
-// 場面の列を回す。端末の外へ出すのは起動できなかった理由 1 行と終了コードだけ。
-// 移植元: NeNe Igo `Sources/nene-igo/main.swift`（コミット 3bdae35）。`--version` は Phase 4 の公開の経路で足す。
+// 場面の列を回す。端末の外へ出すのは起動できなかった理由 1 行と `--version` の 1 行と終了コードだけ。
+// 移植元: NeNe Igo `Sources/nene-igo/main.swift`（コミット 3bdae35）。
 
 import Glibc
 import NeNeSwarmRender
 import NeNeSwarmTerminal
 
+let arguments = Array(CommandLine.arguments.dropFirst())
+if arguments == ["--version"] {
+    print("nene-swarm \(Version.current)")
+    exit(0)
+}
+
 let options: LaunchOptions
-switch LaunchOptions.parse(Array(CommandLine.arguments.dropFirst())) {
+switch LaunchOptions.parse(arguments) {
 case .parsed(let parsed):
     options = parsed
 case .rejected(let reason):
