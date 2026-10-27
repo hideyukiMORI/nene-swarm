@@ -33,7 +33,7 @@ public enum ScreenRenderer {
             painter.draw(game, into: &grid)
             cards.banner(game, into: &grid)
         case .gameOver(let summary, _):
-            cards.gameOver(summary, highScores: state.highScores, into: &grid)
+            cards.gameOver(summary, persona: state.persona, highScores: state.highScores, into: &grid)
         }
         let hud = HudPanel(state: state, panel: Panel(width: layout.hudWidth, glyphs: glyphs), theme: theme)
         let rows = layout.frameBottom - layout.frameTop + 1

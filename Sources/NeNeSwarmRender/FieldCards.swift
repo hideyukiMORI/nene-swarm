@@ -1,4 +1,5 @@
 import NeNeSwarmCore
+import NeNeSwarmEngine
 
 /// 盤面の中に出す文字（TITLE・GAME OVER・ステージの帯）。文字は盤面の地の上に書き、自機や敵のセルには書かない。
 struct FieldCards {
@@ -13,15 +14,17 @@ struct FieldCards {
         for rank in 0..<HighScoreTable.capacity {
             center(FieldCards.line(rank, state.highScores), row: 10 + rank, color: theme.text, into: &grid)
         }
-        let next = Wording.game(state.gameNumber) + "   " + Wording.difficulty(state.difficulty) + "   " + state.pilot
-        center(next, row: 17, color: theme.text, into: &grid)
+        let next = Wording.game(state.gameNumber) + "   " + Wording.difficulty(state.difficulty)
+        center(next, row: 16, color: theme.text, into: &grid)
+        center("PILOT " + state.persona.name + " " + state.persona.face, row: 17, color: theme.accent, into: &grid)
         center(Wording.standby, row: 18, color: theme.dim, into: &grid)
     }
 
     /// GAME OVER: 終わり方・最終スコア・到達ステージ・新記録。
-    func gameOver(_ summary: GameSummary, highScores: HighScoreTable, into grid: inout Grid) {
+    func gameOver(_ summary: GameSummary, persona: Persona, highScores: HighScoreTable, into grid: inout Grid) {
         center(Wording.gameOver, row: 6, color: theme.accentAlt, into: &grid)
         center(Wording.ending(summary.ending), row: 8, color: theme.dim, into: &grid)
+        center(persona.name + " " + persona.face, row: 9, color: theme.accent, into: &grid)
         center("SCORE " + Wording.digits(summary.score, 7), row: 11, color: theme.text, into: &grid)
         center("STAGE " + String(summary.stage.number), row: 12, color: theme.text, into: &grid)
         if summary.score > 0, highScores.best == summary.score {

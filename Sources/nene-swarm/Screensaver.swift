@@ -7,6 +7,7 @@ import NeNeSwarmTerminal
 ///
 /// 時計を読むのはここだけ。Core は刻みの数しか知らないので、同じシードならキーを押さない限り刻みの速さによらず同じゲームになる。
 /// 移植元: NeNe Igo `Sources/nene-igo/Screensaver.swift`（コミット 3bdae35）。1 手ごとの締め切りを、決まった間隔の刻みに替えた。
+/// パイロットは TITLE に入るたびに 4 名から乱数で選び、次のゲームに乗せる（Q4・ADR 0008）。
 struct Screensaver {
     /// 描くのが遅れたときに追いつく刻みの上限（それ以上は捨てて、いまから数え直す）。
     private static let maxCatchUp = 4
@@ -16,7 +17,8 @@ struct Screensaver {
     private let clock = ContinuousClock()
     private var generator: SplitMix64
     private var pilotGenerator: SplitMix64
-    private var pilot = WanderingPilot()
+    private var persona: Persona
+    private var pilot: Pilot
     private var session: Session
     private var display: DisplayOptions
     private var difficulty: Difficulty
@@ -31,6 +33,8 @@ struct Screensaver {
         generator = SplitMix64(seed: seed)
         pilotGenerator = SplitMix64(seed: seed ^ 0x5357_4152_4D21)
         session = Session(durations: options.durations)
+        persona = Persona.roster.randomElement(using: &pilotGenerator) ?? Persona.blaster
+        pilot = Pilot(persona: persona)
     }
 
     /// `q` か終了のシグナルが来るまで回す。
@@ -77,7 +81,7 @@ struct Screensaver {
     private mutating func tick() {
         var input = PilotInput.idle
         if case .play(let game) = session.scene {
-            input = pilot.input(for: game, using: &pilotGenerator)
+            input = pilot.input(for: game, difficulty: difficulty, using: &pilotGenerator)
         }
         let step = session.step(input, difficulty: difficulty, using: &generator)
         for event in step.events {
@@ -89,25 +93,24 @@ struct Screensaver {
     private mutating func record(_ event: SessionEvent) {
         switch event {
         case .gameStarted:
-            pilot = WanderingPilot()
+            pilot = Pilot(persona: persona)
         case .gameEnded(let summary):
             let entry = HighScore(
-                score: summary.score, pilot: Self.pilotName, stage: summary.stage.number, difficulty: summary.difficulty
-            )
+                score: summary.score, pilot: persona.name, stage: summary.stage.number, difficulty: summary.difficulty)
             highScores = highScores.inserting(entry).table
-        case .titleShown, .game:
+        case .titleShown:
+            // 次のゲームのパイロットは TITLE に入ったときに決め、TITLE に出す
+            persona = Persona.roster.randomElement(using: &pilotGenerator) ?? Persona.blaster
+        case .game:
             break
         }
     }
-
-    /// 仮のパイロットの名前（キャストは Phase 3-4）。
-    private static let pilotName = "AUTO"
 
     /// いまの状態を描き、前のフレームとの差分だけを 1 回で書く。
     private mutating func draw() {
         let state = ScreenState(
             session: session, display: display, difficulty: difficulty, seed: seed, highScores: highScores,
-            pilot: Self.pilotName)
+            persona: persona)
         let grid = ScreenRenderer.render(state, size: Console.size())
         Console.write(FrameEncoder.encode(grid, previous: previous, colors: display.traits.colors))
         previous = grid

@@ -120,4 +120,18 @@ import Testing
         game.checkInvasion(events: &events)
         #expect(events == [.gameOver(.invaded)])
     }
+
+    @Test func aDiverBelowTheCommitLineNoLongerTurnsTowardTheShip() {
+        var game = Scenario.empty()
+        game.ship = Scenario.ship(x: 0)
+        let dive = Dive(purpose: .attack, velocity: Velocity(dx: 2, dy: 4), elapsed: 30)
+        game.enemies = [Scenario.enemy(.drone, at: Point(x: 300, y: Game.commitAltitude), motion: .diving(dive))]
+        var generator = SplitMix64(seed: 1)
+        game.moveEnemies(tuning: Tuning.make(difficulty: .normal, stage: 1), using: &generator)
+        guard case .diving(let after) = game.enemies[0].motion else {
+            Issue.record("急降下が終わった")
+            return
+        }
+        #expect(after.velocity.dx == 2)
+    }
 }

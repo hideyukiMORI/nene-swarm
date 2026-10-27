@@ -13,12 +13,12 @@ struct ScreenRendererTests {
     static func session(ticks: Int) -> Session {
         var generator = SplitMix64(seed: 9)
         var pilotGenerator = SplitMix64(seed: 10)
-        var pilot = WanderingPilot()
+        var pilot = Pilot(persona: .sniper)
         var session = Session(durations: SceneDurations(titleTicks: 30, gameOverTicks: 30))
         for _ in 0..<ticks {
             var input = PilotInput.idle
             if case .play(let game) = session.scene {
-                input = pilot.input(for: game, using: &pilotGenerator)
+                input = pilot.input(for: game, difficulty: .normal, using: &pilotGenerator)
             }
             session = session.step(input, difficulty: .normal, using: &generator).session
         }
@@ -27,7 +27,7 @@ struct ScreenRendererTests {
 
     static func render(_ session: Session, display: DisplayOptions = boxed, size: ScreenSize = size) -> Grid {
         let state = ScreenState(
-            session: session, display: display, difficulty: .normal, seed: 9, highScores: .empty, pilot: "AUTO")
+            session: session, display: display, difficulty: .normal, seed: 9, highScores: .empty, persona: .sniper)
         return ScreenRenderer.render(state, size: size)
     }
 
