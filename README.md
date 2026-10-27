@@ -12,6 +12,7 @@ BLASTER.BIN, NERVOUS.TMP, LUCKY.INI and SNIPER.ISO dodge by looking ahead with t
 and some fly into the capture beam on purpose to win a dual ship. A NORMAL game lasts a little over three minutes on average.
 The swarm marches and dives, shots never tunnel, shields chip, the capture beam and the rescue work, and 600 games played to the end keep
 every invariant (determinism, bounds, score and ship counts, every game ending). Each pilot has fifty lines of its own in the COMMS panel. Twelve themes, a drifting starfield, bursting explosions, floating scores, screen flashes and big-letter stage banners keep it busy.
+High scores are kept in `$XDG_STATE_HOME/nene-swarm/` (or `~/.local/state/nene-swarm/`), and a terminal of 100×26 or larger gets a wider HUD with the score table and two lines of COMMS.
 
 ## Development
 

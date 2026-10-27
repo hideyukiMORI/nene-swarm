@@ -19,6 +19,9 @@ struct FieldCards {
         center(next, row: 16, color: theme.text, into: &grid)
         center("PILOT " + state.persona.name + " " + state.persona.face, row: 17, color: theme.accent, into: &grid)
         center(Wording.standby, row: 18, color: theme.dim, into: &grid)
+        if case .memoryOnly = state.storage {
+            center(Wording.memoryOnly, row: 19, color: theme.dim, into: &grid)
+        }
     }
 
     /// GAME OVER: 終わり方・最終スコア・到達ステージ・新記録。

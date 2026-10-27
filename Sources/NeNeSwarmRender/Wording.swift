@@ -57,6 +57,7 @@ enum Wording {
     static let highScores = "HIGH SCORES"
     static let newRecord = "NEW RECORD"
     static let standby = "STANDBY"
+    static let memoryOnly = "SCORES KEPT IN MEMORY ONLY"
 
     static func tooSmall(need: ScreenSize) -> String {
         "TERMINAL TOO SMALL: NEED \(need.columns)x\(need.rows)"

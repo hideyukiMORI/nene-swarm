@@ -26,6 +26,7 @@ struct Screensaver {
     private var display: DisplayOptions
     private var difficulty: Difficulty
     private var highScores = HighScoreTable.empty
+    private var storage = ScoreStorage.memoryOnly
     private var previous: Grid?
 
     init(options: LaunchOptions, display: DisplayOptions, seed: UInt64) {
@@ -37,6 +38,13 @@ struct Screensaver {
         pilotGenerator = SplitMix64(seed: seed ^ 0x5357_4152_4D21)
         session = Session(durations: options.durations)
         banterGenerator = SplitMix64(seed: seed ^ 0x4241_4E54_4552)
+        switch ScoreStore.load() {
+        case .loaded(let table):
+            highScores = table
+            storage = .file
+        case .memoryOnly:
+            storage = .memoryOnly
+        }
         persona = Persona.roster.randomElement(using: &pilotGenerator) ?? Persona.blaster
         pilot = Pilot(persona: persona)
     }
@@ -112,6 +120,9 @@ struct Screensaver {
                 score: summary.score, pilot: persona.name, stage: summary.stage.number, difficulty: summary.difficulty)
             let insertion = highScores.inserting(entry)
             highScores = insertion.table
+            if case .file = storage, !ScoreStore.save(highScores) {
+                storage = .memoryOnly
+            }
             return summary.score > 0 && insertion.rank == .ranked(1)
         case .titleShown:
             // 次のゲームのパイロットは TITLE に入ったときに決め、TITLE に出す（セリフは次のパイロットが言う）
@@ -126,7 +137,7 @@ struct Screensaver {
     private mutating func draw() {
         let state = ScreenState(
             session: session, display: display, difficulty: difficulty, seed: seed, highScores: highScores,
-            persona: persona, remark: banter.latest, effects: effects)
+            persona: persona, remarks: banter.lines, effects: effects, storage: storage)
         let grid = ScreenRenderer.render(state, size: Console.size())
         Console.write(FrameEncoder.encode(grid, previous: previous, colors: display.traits.colors))
         previous = grid
