@@ -20,7 +20,7 @@
 | 盤面（field） | 当たり判定の座標の範囲。セルを細かく割った整数（固定小数点）で持つ。セルへの変換は 1 経路 | `NeNeSwarmCore` |
 | 場面（scene） | TITLE・PLAY・GAME OVER の閉じた enum。遷移は TITLE → PLAY → GAME OVER → TITLE だけ（FR-03） | `NeNeSwarmCore` |
 | 自機（ship） | パイロットが動かす機体。下端を左右に動き、上へ撃つ | `NeNeSwarmCore` |
-| 編成（formation） | 自機が 1 機か 2 機並びか（FR-02b）。2 機並びは弾が 2 発ずつ・当たり判定も 2 機分 | `NeNeSwarmCore` |
+| 編成（wing） | 自機が 1 機か 2 機並びか（FR-02b）。2 機並びは弾が 2 発ずつ・当たり判定も 2 機分 | `NeNeSwarmCore`（`Wing`） |
 | 残機（lives） | 控えの自機の数。被弾と捕獲でだけ 1 減る | `NeNeSwarmCore` |
 | 隊列（swarm） | 画面の上側に並ぶ敵の集まり。左右に行進し、端で 1 段下がる（FR-02 a） | `NeNeSwarmCore` |
 | 急降下（dive） | 隊列から抜けた敵が曲線を描いて自機へ向かい、画面の下を抜けて隊列へ戻る動き（FR-02 b） | `NeNeSwarmCore` |
