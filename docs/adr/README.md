@@ -27,3 +27,4 @@ ADR は「なぜそう決めたか」「何を却下したか」を書く。
 | [0009](0009-pilot-lines-and-comms.md) | パイロットのセリフは 12 のきっかけ × 1 人 50 本で、HUD の COMMS 欄に折り返して出す | 受理 |
 | [0010](0010-theme-colors-and-effects.md) | 12 テーマに 11 の専用の色を足し、演出は出来事から Render の側で作る | 受理 |
 | [0011](0011-high-score-file-and-large-layout.md) | ハイスコアは版つきのテキストで XDG の状態の置き場に残し、100 × 26 以上では 2 段目の配置にする | 受理 |
+| [0012](0012-release-pipeline.md) | 版の入力は Version.swift の 1 か所、配布物は静的リンクの 1 経路で作り、検査してから梱包する | 受理 |
