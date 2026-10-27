@@ -7,9 +7,9 @@ Written in Swift for Ubuntu on WSL2 and Windows Terminal. The game, the collisio
 It is a sibling of [NeNe Gambit](https://github.com/hideyukiMORI/nene-gambit) (chess), [NeNe Reversi](https://github.com/hideyukiMORI/nene-reversi),
 [NeNe Igo](https://github.com/hideyukiMORI/nene-igo) (Go) and [NeNe Poker](https://github.com/hideyukiMORI/nene-poker).
 
-🚧 **Nothing is drawn yet.** The game itself is written and tested with no screen: the swarm marches and dives, shots never tunnel,
-shields chip, the capture beam and the rescue work, and 600 games played to the end keep every invariant (determinism, bounds, score and
-ship counts, every game ending). The screen and the real pilots come next.
+🚧 **Early.** The game runs in an 80×24 terminal with a placeholder pilot that wanders and fires: title, play, game over, and around again.
+The swarm marches and dives, shots never tunnel, shields chip, the capture beam and the rescue work, and 600 games played to the end keep
+every invariant (determinism, bounds, score and ship counts, every game ending). The real pilots, their lines and the flashy effects come next.
 
 ## Development
 

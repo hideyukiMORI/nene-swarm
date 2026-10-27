@@ -4,9 +4,9 @@
 BASE ?= origin/main
 SWIFTLINT := .tools/swiftlint
 
-.PHONY: check bootstrap tools build test format lint conformance conformance-test commits
+.PHONY: check bootstrap tools build test smoke format lint conformance conformance-test commits
 
-check: tools build format lint conformance conformance-test test commits
+check: tools build format lint conformance conformance-test test smoke commits
 	@echo "make check: 緑"
 
 bootstrap: tools
@@ -21,6 +21,11 @@ build:
 # 多数のゲームを最後まで回す不変条件のテストは重いので、release 構成で回す（ADR 0006。release でも @testable import は効く・ADR 0001 の X-e）。
 test:
 	eng/swift-strict.sh swift test -c release
+
+# 実行ファイルを疑似端末で動かし、キーと終わり方ごとの端末の復元を見る（FR-08・ADR 0007）。release 構成の実行ファイルを使う
+smoke:
+	eng/swift-strict.sh swift build -c release --product nene-swarm
+	python3 eng/smoke-terminal.py .build/release/nene-swarm
 
 format:
 	eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format
