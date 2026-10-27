@@ -1,6 +1,6 @@
 {
   "measured_on": "2026-10-27",
-  "head": "dd22d9c",
+  "head": "14f3283",
   "note": "verdict=pass は「意図した規則で落ちた」（対照は exit 0）。作業木の未コミットの変更も複製に含む。",
   "results": [
     {
@@ -16,12 +16,12 @@
       ],
       "missing": [],
       "tail": [
-        "python3 -m unittest discover -s eng/tests -q",
+        "✔ Test run with 55 tests in 9 suites passed after 0.913 seconds.",
         "python3 eng/validate-commit-message.py --range \"origin/main..HEAD\"",
         "commits: 0 件・違反 0 件",
         "make check: 緑",
         "----------------------------------------------------------------------",
-        "Ran 106 tests in 0.329s",
+        "Ran 106 tests in 0.349s",
         "",
         "OK"
       ]
@@ -39,12 +39,12 @@
       ],
       "missing": [],
       "tail": [
-        "python3 -m unittest discover -s eng/tests -q",
+        "✔ Test run with 55 tests in 9 suites passed after 0.957 seconds.",
         "python3 eng/validate-commit-message.py --range \"origin/main..HEAD\"",
         "commits: 0 件・違反 0 件",
         "make check: 緑",
         "----------------------------------------------------------------------",
-        "Ran 106 tests in 0.341s",
+        "Ran 106 tests in 0.300s",
         "",
         "OK"
       ]
@@ -70,7 +70,7 @@
         "2 | ",
         "3 | /// 証明用。",
         "Failed frontend command:",
-        "/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-frontend -frontend -emit-module -experimental-skip-non-inlinable-function-bodies-without-types Sources/NeNeSwarmCore/Probe.swift Sources/NeNeSwarmCore/Square.swift -target x86_64-unknown-linux-gnu -disable-objc-interop -I .build/out/Products/Debug-linux-x86_64 -module-cache-path .build/out/ModuleCache.noindex -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\\=dwarf -dwarf-version\\=4 -warnings-as-errors -warnings-as-errors -swift-version 6 -Onone -D SWIFT_PACKAGE -D DEBUG -D SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -D Xcode -serialize-debugging-options -enable-upcoming-feature ExistentialAny -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -external-plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins/testing\\#/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-plugin-server -validate-clang-modules-once -clang-build-session-file .build/out/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /tmp/swarm-proof-P01-aayrwya3 -enable-anonymous-context-mangled-names -file-compilation-dir /tmp/swarm-proof-P01-aayrwya3 -Xcc -fno-omit-frame-pointer -Xcc -D_LIBCPP_HARDENING_MODE\\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -fmodules-prune-interval\\=86400 -Xcc -fmodules-prune-after\\=345600 -Xcc -I.build/out/Products/Debug-linux-x86_64/include -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources-normal/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\\=1 -no-auto-bridging-header-chaining -module-name NeNeSwarmCore -package-name repo -const-gather-protocols-file .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore_const_extract_protocols.json -in-process-plugin-server-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/libSwiftInProcPluginServer.so -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/local/lib/swift/host/plugins -emit-module-doc-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Modules/NeNeSwarmCore.swiftdoc -emit-module-source-info-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Modules/NeNeSwarmCore.swiftsourceinfo -emit-objc-header-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore-Swift.h -serialize-diagnostics-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore-primary-emit-module.dia -emit-dependencies-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore-primary-emit-module.d -parse-as-library -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Modules/NeNeSwarmCore.swiftmodule",
+        "/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-frontend -frontend -emit-module -experimental-skip-non-inlinable-function-bodies-without-types Sources/NeNeSwarmCore/BonusProgress.swift Sources/NeNeSwarmCore/Box.swift Sources/NeNeSwarmCore/Captive.swift Sources/NeNeSwarmCore/Difficulty.swift Sources/NeNeSwarmCore/Dive.swift Sources/NeNeSwarmCore/DiveChoice.swift Sources/NeNeSwarmCore/DivePurpose.swift Sources/NeNeSwarmCore/Enemy.swift Sources/NeNeSwarmCore/EnemyKind.swift Sources/NeNeSwarmCore/EnemyMotion.swift Sources/NeNeSwarmCore/Field.swift Sources/NeNeSwarmCore/Flight.swift Sources/NeNeSwarmCore/Game+Advance.swift Sources/NeNeSwarmCore/Game+Bonus.swift Sources/NeNeSwarmCore/Game+Collisions.swift Sources/NeNeSwarmCore/Game+Enemies.swift Sources/NeNeSwarmCore/Game+EnemyShots.swift Sources/NeNeSwarmCore/Game+March.swift Sources/NeNeSwarmCore/Game+PlayerShots.swift Sources/NeNeSwarmCore/Game+Saucer.swift Sources/NeNeSwarmCore/Game+Ship.swift Sources/NeNeSwarmCore/Game+Stages.swift Sources/NeNeSwarmCore/Game.swift Sources/NeNeSwarmCore/GameEnding.swift Sources/NeNeSwarmCore/GameEvent.swift Sources/NeNeSwarmCore/GameStatus.swift Sources/NeNeSwarmCore/GameStep.swift Sources/NeNeSwarmCore/GameSummary.swift Sources/NeNeSwarmCore/HighScore.swift Sources/NeNeSwarmCore/HighScoreInsertion.swift Sources/NeNeSwarmCore/HighScoreRank.swift Sources/NeNeSwarmCore/HighScoreTable.swift Sources/NeNeSwarmCore/HitCause.swift Sources/NeNeSwarmCore/MarchHeading.swift Sources/NeNeSwarmCore/PilotInput.swift Sources/NeNeSwarmCore/PlayPhase.swift Sources/NeNeSwarmCore/Point.swift Sources/NeNeSwarmCore/Posture.swift Sources/NeNeSwarmCore/Probe.swift Sources/NeNeSwarmCore/RescueOutcome.swift Sources/NeNeSwarmCore/Saucer.swift Sources/NeNeSwarmCore/SaucerState.swift Sources/NeNeSwarmCore/Scene.swift Sources/NeNeSwarmCore/SceneDurations.swift Sources/NeNeSwarmCore/Session.swift Sources/NeNeSwarmCore/SessionEvent.swift Sources/NeNeSwarmCore/SessionStep.swift Sources/NeNeSwarmCore/Shield.swift Sources/NeNeSwarmCore/ShieldCell.swift Sources/NeNeSwarmCore/Ship.swift Sources/NeNeSwarmCore/ShipPresence.swift Sources/NeNeSwarmCore/Shot.swift Sources/NeNeSwarmCore/ShotFate.swift Sources/NeNeSwarmCore/Slot.swift Sources/NeNeSwarmCore/Square.swift Sources/NeNeSwarmCore/Stage.swift Sources/NeNeSwarmCore/StageKind.swift Sources/NeNeSwarmCore/Steer.swift Sources/NeNeSwarmCore/Swarm.swift Sources/NeNeSwarmCore/Trigger.swift Sources/NeNeSwarmCore/Tuning.swift Sources/NeNeSwarmCore/Velocity.swift Sources/NeNeSwarmCore/Wing.swift -target x86_64-unknown-linux-gnu -disable-objc-interop -I .build/out/Products/Debug-linux-x86_64 -module-cache-path .build/out/ModuleCache.noindex -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\\=dwarf -dwarf-version\\=4 -warnings-as-errors -warnings-as-errors -swift-version 6 -Onone -D SWIFT_PACKAGE -D DEBUG -D SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -D Xcode -serialize-debugging-options -enable-upcoming-feature ExistentialAny -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -external-plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins/testing\\#/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-plugin-server -validate-clang-modules-once -clang-build-session-file .build/out/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /tmp/swarm-proof-P01-65k3vyne -enable-anonymous-context-mangled-names -file-compilation-dir /tmp/swarm-proof-P01-65k3vyne -Xcc -fno-omit-frame-pointer -Xcc -D_LIBCPP_HARDENING_MODE\\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -fmodules-prune-interval\\=86400 -Xcc -fmodules-prune-after\\=345600 -Xcc -I.build/out/Products/Debug-linux-x86_64/include -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources-normal/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\\=1 -no-auto-bridging-header-chaining -module-name NeNeSwarmCore -package-name repo -const-gather-protocols-file .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore_const_extract_protocols.json -in-process-plugin-server-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/libSwiftInProcPluginServer.so -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/local/lib/swift/host/plugins -emit-module-doc-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Modules/NeNeSwarmCore.swiftdoc -emit-module-source-info-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Modules/NeNeSwarmCore.swiftsourceinfo -emit-objc-header-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore-Swift.h -serialize-diagnostics-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore-primary-emit-module.dia -emit-dependencies-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore-primary-emit-module.d -parse-as-library -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Modules/NeNeSwarmCore.swiftmodule",
         "error: Build failed",
         "make: *** [Makefile:19: build] Error 1"
       ]
@@ -92,14 +92,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (3.47 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (13.11 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-010 Package.swift:17: target NeNeSwarmTerminal の依存が正本と違う（余分: NeNeSwarmCore / 不足: なし）",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -120,14 +120,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (4.57 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (17.94 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-011 Sources/NeNeSwarmCore/Probe.swift:1: NeNeSwarmCore は Foundation を import できない",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -146,14 +146,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91]",
-        "Build complete! (3.51 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (10.55 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-012 Sources/NeNeSwarmEngine/Pick.swift:7: random(...) は using: で乱数源を受け取る",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -172,14 +172,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91]",
-        "Build complete! (3.48 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (6.18 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-012 Tests/NeNeSwarmCoreTests/ProbeTests.swift:3: 時刻・乱数・環境・プロセス状態は合成ルートだけが読む",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -203,7 +203,7 @@
         "11 |     case .white:",
         "12 |         return 1",
         "Failed frontend command:",
-        "/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-frontend -frontend -c -primary-file Sources/NeNeSwarmCore/Side.swift Sources/NeNeSwarmCore/Square.swift -emit-dependencies-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Side.d -emit-const-values-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Side.swiftconstvalues -emit-reference-dependencies-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Side.swiftdeps -serialize-diagnostics-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Side.dia -target x86_64-unknown-linux-gnu -disable-objc-interop -I .build/out/Products/Debug-linux-x86_64 -module-cache-path .build/out/ModuleCache.noindex -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\\=dwarf -dwarf-version\\=4 -warnings-as-errors -warnings-as-errors -swift-version 6 -Onone -D SWIFT_PACKAGE -D DEBUG -D SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -D Xcode -serialize-debugging-options -enable-upcoming-feature ExistentialAny -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -external-plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins/testing\\#/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-plugin-server -validate-clang-modules-once -clang-build-session-file .build/out/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /tmp/swarm-proof-P06-ba7i00c9 -enable-anonymous-context-mangled-names -file-compilation-dir /tmp/swarm-proof-P06-ba7i00c9 -Xcc -fno-omit-frame-pointer -Xcc -D_LIBCPP_HARDENING_MODE\\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -fmodules-prune-interval\\=86400 -Xcc -fmodules-prune-after\\=345600 -Xcc -I.build/out/Products/Debug-linux-x86_64/include -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources-normal/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\\=1 -no-auto-bridging-header-chaining -module-name NeNeSwarmCore -package-name repo -const-gather-protocols-file .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore_const_extract_protocols.json -in-process-plugin-server-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/libSwiftInProcPluginServer.so -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/local/lib/swift/host/plugins -parse-as-library -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Side.o -index-unit-output-path /NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Side.o -index-store-path .build/out -index-system-modules",
+        "/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-frontend -frontend -c Sources/NeNeSwarmCore/BonusProgress.swift Sources/NeNeSwarmCore/Box.swift Sources/NeNeSwarmCore/Captive.swift Sources/NeNeSwarmCore/Difficulty.swift Sources/NeNeSwarmCore/Dive.swift Sources/NeNeSwarmCore/DiveChoice.swift Sources/NeNeSwarmCore/DivePurpose.swift Sources/NeNeSwarmCore/Enemy.swift Sources/NeNeSwarmCore/EnemyKind.swift Sources/NeNeSwarmCore/EnemyMotion.swift Sources/NeNeSwarmCore/Field.swift Sources/NeNeSwarmCore/Flight.swift Sources/NeNeSwarmCore/Game+Advance.swift Sources/NeNeSwarmCore/Game+Bonus.swift Sources/NeNeSwarmCore/Game+Collisions.swift Sources/NeNeSwarmCore/Game+Enemies.swift Sources/NeNeSwarmCore/Game+EnemyShots.swift Sources/NeNeSwarmCore/Game+March.swift Sources/NeNeSwarmCore/Game+PlayerShots.swift Sources/NeNeSwarmCore/Game+Saucer.swift Sources/NeNeSwarmCore/Game+Ship.swift Sources/NeNeSwarmCore/Game+Stages.swift Sources/NeNeSwarmCore/Game.swift Sources/NeNeSwarmCore/GameEnding.swift Sources/NeNeSwarmCore/GameEvent.swift Sources/NeNeSwarmCore/GameStatus.swift Sources/NeNeSwarmCore/GameStep.swift Sources/NeNeSwarmCore/GameSummary.swift Sources/NeNeSwarmCore/HighScore.swift Sources/NeNeSwarmCore/HighScoreInsertion.swift Sources/NeNeSwarmCore/HighScoreRank.swift Sources/NeNeSwarmCore/HighScoreTable.swift Sources/NeNeSwarmCore/HitCause.swift Sources/NeNeSwarmCore/MarchHeading.swift Sources/NeNeSwarmCore/PilotInput.swift Sources/NeNeSwarmCore/PlayPhase.swift Sources/NeNeSwarmCore/Point.swift Sources/NeNeSwarmCore/Posture.swift Sources/NeNeSwarmCore/RescueOutcome.swift Sources/NeNeSwarmCore/Saucer.swift Sources/NeNeSwarmCore/SaucerState.swift Sources/NeNeSwarmCore/Scene.swift Sources/NeNeSwarmCore/SceneDurations.swift Sources/NeNeSwarmCore/Session.swift Sources/NeNeSwarmCore/SessionEvent.swift Sources/NeNeSwarmCore/SessionStep.swift Sources/NeNeSwarmCore/Shield.swift Sources/NeNeSwarmCore/ShieldCell.swift Sources/NeNeSwarmCore/Ship.swift Sources/NeNeSwarmCore/ShipPresence.swift Sources/NeNeSwarmCore/Shot.swift -primary-file Sources/NeNeSwarmCore/ShotFate.swift -primary-file Sources/NeNeSwarmCore/Side.swift -primary-file Sources/NeNeSwarmCore/Slot.swift Sources/NeNeSwarmCore/Square.swift Sources/NeNeSwarmCore/Stage.swift Sources/NeNeSwarmCore/StageKind.swift Sources/NeNeSwarmCore/Steer.swift Sources/NeNeSwarmCore/Swarm.swift Sources/NeNeSwarmCore/Trigger.swift Sources/NeNeSwarmCore/Tuning.swift Sources/NeNeSwarmCore/Velocity.swift Sources/NeNeSwarmCore/Wing.swift -supplementary-output-file-map .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/supplementaryOutputs-17 -target x86_64-unknown-linux-gnu -disable-objc-interop -I .build/out/Products/Debug-linux-x86_64 -module-cache-path .build/out/ModuleCache.noindex -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\\=dwarf -dwarf-version\\=4 -warnings-as-errors -warnings-as-errors -swift-version 6 -Onone -D SWIFT_PACKAGE -D DEBUG -D SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -D Xcode -serialize-debugging-options -enable-upcoming-feature ExistentialAny -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -external-plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins/testing\\#/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-plugin-server -validate-clang-modules-once -clang-build-session-file .build/out/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /tmp/swarm-proof-P06-hj7i3jws -enable-anonymous-context-mangled-names -file-compilation-dir /tmp/swarm-proof-P06-hj7i3jws -Xcc -fno-omit-frame-pointer -Xcc -D_LIBCPP_HARDENING_MODE\\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -fmodules-prune-interval\\=86400 -Xcc -fmodules-prune-after\\=345600 -Xcc -I.build/out/Products/Debug-linux-x86_64/include -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources-normal/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\\=1 -no-auto-bridging-header-chaining -module-name NeNeSwarmCore -package-name repo -const-gather-protocols-file .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore_const_extract_protocols.json -in-process-plugin-server-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/libSwiftInProcPluginServer.so -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/local/lib/swift/host/plugins -parse-as-library -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/ShotFate.o -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Side.o -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Slot.o -index-unit-output-path /NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/ShotFate.o -index-unit-output-path /NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Side.o -index-unit-output-path /NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Slot.o -index-store-path .build/out -index-system-modules",
         "error: Build failed",
         "make: *** [Makefile:19: build] Error 1"
       ]
@@ -224,14 +224,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92]",
-        "Build complete! (3.36 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (5.54 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-013 Sources/NeNeSwarmCore/Side.swift:15: 全捕捉（default / @unknown default / case _ / case let x / 括弧や並びに隠れた _ と束縛）は網羅性検査を殺す",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -249,14 +249,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92]",
-        "Build complete! (3.41 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (5.18 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-013 Sources/NeNeSwarmCore/Side.swift:15: 全捕捉（default / @unknown default / case _ / case let x / 括弧や並びに隠れた _ と束縛）は網羅性検査を殺す",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -275,14 +275,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (3.58 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (5.29 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-016 Sources/NeNeSwarmRender/Cell.swift:3: public の格納 var は外から変更できる（let か private(set) にする）",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -300,14 +300,14 @@
       ],
       "missing": [],
       "tail": [
-        "[82 / 89] NeNeSwarmRender",
-        "[87 / 90] NeNeSwarmTerminal",
-        "[91 / 91]",
-        "Build complete! (3.71 secs)",
+        "[106 / 109] nene-swarm-product",
+        "[106 / 109] NeNeSwarmTerminal",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (5.26 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "Sources/nene-swarm/main.swift:9:13: error: Force Unwrapping Violation: Force unwrapping should be avoided (force_unwrapping)",
-        "make: *** [Makefile:25: lint] Error 2"
+        "make: *** [Makefile:29: lint] Error 2"
       ]
     },
     {
@@ -326,14 +326,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (3.64 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.97 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-019 Sources/NeNeSwarmCore/Probe.swift:4: 期待される失敗は閉じた結果型で返す（throw / try / catch は使えない）",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -352,14 +352,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (3.61 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.91 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-020 Sources/NeNeSwarmCore/Probe.swift:4: Any / AnyObject / AnyHashable / AnyClass は使えない",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -377,14 +377,14 @@
       ],
       "missing": [],
       "tail": [
-        "[85 / 90] NeNeSwarmRender",
-        "[88 / 91] NeNeSwarmTerminal",
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (4.34 secs)",
+        "[102 / 108] NeNeSwarmEngine",
+        "[106 / 109] NeNeSwarmTerminal",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.85 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "Sources/NeNeSwarmCore/Probe.swift:4:29: error: Large Tuple Violation: Tuples should have at most 2 members (large_tuple)",
-        "make: *** [Makefile:25: lint] Error 2"
+        "make: *** [Makefile:29: lint] Error 2"
       ]
     },
     {
@@ -403,14 +403,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (4.25 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.87 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-014 Sources/NeNeSwarmCore/Probe.swift:3: unsafe 系の API は unsafe=allowed の target だけ",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -429,14 +429,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (4.33 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.69 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-001 Sources/NeNeSwarmCore/BoardHelper.swift:2: 総称名の型 BoardHelper",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -455,14 +455,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (4.16 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.52 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-002 Sources/NeNeSwarmCore/Probe.swift:5: 主要宣言が 2 個ある: Probe, Other",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -480,14 +480,14 @@
       ],
       "missing": [],
       "tail": [
-        "[85 / 90] NeNeSwarmRender",
-        "[88 / 91] NeNeSwarmTerminal",
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (4.20 secs)",
+        "[104 / 109] nene-swarm-product",
+        "[106 / 109] NeNeSwarmTerminal",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (5.17 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "Sources/NeNeSwarmCore/Probe.swift:4:12: error: Function Parameter Count Violation: Function should have 4 parameters or less: it currently has 5 (function_parameter_count)",
-        "make: *** [Makefile:25: lint] Error 2"
+        "make: *** [Makefile:29: lint] Error 2"
       ]
     },
     {
@@ -505,14 +505,14 @@
       ],
       "missing": [],
       "tail": [
-        "[79 / 89] NeNeSwarmRender",
-        "[88 / 91] NeNeSwarmTerminal",
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (4.25 secs)",
+        "[99 / 108] NeNeSwarmCore",
+        "[106 / 109] NeNeSwarmTerminal",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.76 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "Sources/NeNeSwarmCore/Probe.swift:4:5: error: Cyclomatic Complexity Violation: Function should have complexity 10 or less; currently complexity is 11 (cyclomatic_complexity)",
-        "make: *** [Makefile:25: lint] Error 2"
+        "make: *** [Makefile:29: lint] Error 2"
       ]
     },
     {
@@ -531,14 +531,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (4.37 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.96 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-003 Sources/nene-swarm/main.swift:9: 直前行に有効な // Waiver: WVR-NNNN が無い",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -558,14 +558,14 @@
       ],
       "missing": [],
       "tail": [
-        "Build complete! (4.90 secs)",
+        "Build complete! (4.57 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-003 Sources/NeNeSwarmCore/Probe.swift:3: @available(..., deprecated) は非推奨の警告を隠す",
         "CNF-003 Sources/NeNeSwarmCore/Probe.swift:6: @diagnose / @warn による警告の抑制",
         "conformance: 23 規則・違反 2 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -584,14 +584,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (5.07 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.86 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-004 docs/waivers/WVR-0001:1: 期限切れの waiver（2026-10-24）",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -610,14 +610,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (5.21 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.63 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-011 Tests/NeNeSwarmCoreTests/ProbeTests.swift:1: NeNeSwarmCoreTests は XCTest を import できない",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -645,7 +645,7 @@
         "CNF-009 Package.swift:8: target NeNeSwarmCore の使えない swiftSettings: .treatAllWarnings(as: .warning)",
         "CNF-009 Package.swift:10: 使えない manifest の指定: 警告を警告のまま残す指定",
         "conformance: 23 規則・違反 3 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -669,7 +669,7 @@
         "",
         "[#NoUsage]: <https://docs.swift.org/compiler/documentation/diagnostics/no-usage>",
         "Failed frontend command:",
-        "/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-frontend -frontend -c -primary-file Sources/NeNeSwarmCore/Probe.swift Sources/NeNeSwarmCore/Square.swift -emit-dependencies-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.d -emit-const-values-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.swiftconstvalues -emit-reference-dependencies-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.swiftdeps -serialize-diagnostics-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.dia -target x86_64-unknown-linux-gnu -disable-objc-interop -I .build/out/Products/Debug-linux-x86_64 -module-cache-path .build/out/ModuleCache.noindex -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\\=dwarf -dwarf-version\\=4 -warnings-as-errors -warnings-as-errors -swift-version 6 -Onone -D SWIFT_PACKAGE -D DEBUG -D SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -D Xcode -serialize-debugging-options -enable-upcoming-feature ExistentialAny -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -external-plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins/testing\\#/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-plugin-server -validate-clang-modules-once -clang-build-session-file .build/out/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /tmp/swarm-proof-P24-0an_hc7e -enable-anonymous-context-mangled-names -file-compilation-dir /tmp/swarm-proof-P24-0an_hc7e -Xcc -fno-omit-frame-pointer -Xcc -D_LIBCPP_HARDENING_MODE\\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -fmodules-prune-interval\\=86400 -Xcc -fmodules-prune-after\\=345600 -Xcc -I.build/out/Products/Debug-linux-x86_64/include -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources-normal/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\\=1 -no-auto-bridging-header-chaining -module-name NeNeSwarmCore -package-name repo -const-gather-protocols-file .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore_const_extract_protocols.json -in-process-plugin-server-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/libSwiftInProcPluginServer.so -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/local/lib/swift/host/plugins -parse-as-library -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.o -index-unit-output-path /NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.o -index-store-path .build/out -index-system-modules",
+        "/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-frontend -frontend -c Sources/NeNeSwarmCore/BonusProgress.swift Sources/NeNeSwarmCore/Box.swift Sources/NeNeSwarmCore/Captive.swift Sources/NeNeSwarmCore/Difficulty.swift Sources/NeNeSwarmCore/Dive.swift Sources/NeNeSwarmCore/DiveChoice.swift Sources/NeNeSwarmCore/DivePurpose.swift Sources/NeNeSwarmCore/Enemy.swift Sources/NeNeSwarmCore/EnemyKind.swift Sources/NeNeSwarmCore/EnemyMotion.swift Sources/NeNeSwarmCore/Field.swift Sources/NeNeSwarmCore/Flight.swift Sources/NeNeSwarmCore/Game+Advance.swift Sources/NeNeSwarmCore/Game+Bonus.swift Sources/NeNeSwarmCore/Game+Collisions.swift Sources/NeNeSwarmCore/Game+Enemies.swift Sources/NeNeSwarmCore/Game+EnemyShots.swift Sources/NeNeSwarmCore/Game+March.swift Sources/NeNeSwarmCore/Game+PlayerShots.swift Sources/NeNeSwarmCore/Game+Saucer.swift Sources/NeNeSwarmCore/Game+Ship.swift Sources/NeNeSwarmCore/Game+Stages.swift Sources/NeNeSwarmCore/Game.swift Sources/NeNeSwarmCore/GameEnding.swift Sources/NeNeSwarmCore/GameEvent.swift Sources/NeNeSwarmCore/GameStatus.swift Sources/NeNeSwarmCore/GameStep.swift Sources/NeNeSwarmCore/GameSummary.swift Sources/NeNeSwarmCore/HighScore.swift Sources/NeNeSwarmCore/HighScoreInsertion.swift Sources/NeNeSwarmCore/HighScoreRank.swift Sources/NeNeSwarmCore/HighScoreTable.swift Sources/NeNeSwarmCore/HitCause.swift Sources/NeNeSwarmCore/MarchHeading.swift Sources/NeNeSwarmCore/PilotInput.swift Sources/NeNeSwarmCore/PlayPhase.swift -primary-file Sources/NeNeSwarmCore/Point.swift -primary-file Sources/NeNeSwarmCore/Posture.swift -primary-file Sources/NeNeSwarmCore/Probe.swift Sources/NeNeSwarmCore/RescueOutcome.swift Sources/NeNeSwarmCore/Saucer.swift Sources/NeNeSwarmCore/SaucerState.swift Sources/NeNeSwarmCore/Scene.swift Sources/NeNeSwarmCore/SceneDurations.swift Sources/NeNeSwarmCore/Session.swift Sources/NeNeSwarmCore/SessionEvent.swift Sources/NeNeSwarmCore/SessionStep.swift Sources/NeNeSwarmCore/Shield.swift Sources/NeNeSwarmCore/ShieldCell.swift Sources/NeNeSwarmCore/Ship.swift Sources/NeNeSwarmCore/ShipPresence.swift Sources/NeNeSwarmCore/Shot.swift Sources/NeNeSwarmCore/ShotFate.swift Sources/NeNeSwarmCore/Slot.swift Sources/NeNeSwarmCore/Square.swift Sources/NeNeSwarmCore/Stage.swift Sources/NeNeSwarmCore/StageKind.swift Sources/NeNeSwarmCore/Steer.swift Sources/NeNeSwarmCore/Swarm.swift Sources/NeNeSwarmCore/Trigger.swift Sources/NeNeSwarmCore/Tuning.swift Sources/NeNeSwarmCore/Velocity.swift Sources/NeNeSwarmCore/Wing.swift -supplementary-output-file-map .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/supplementaryOutputs-12 -target x86_64-unknown-linux-gnu -disable-objc-interop -I .build/out/Products/Debug-linux-x86_64 -module-cache-path .build/out/ModuleCache.noindex -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\\=dwarf -dwarf-version\\=4 -warnings-as-errors -warnings-as-errors -swift-version 6 -Onone -D SWIFT_PACKAGE -D DEBUG -D SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -D Xcode -serialize-debugging-options -enable-upcoming-feature ExistentialAny -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -external-plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins/testing\\#/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-plugin-server -validate-clang-modules-once -clang-build-session-file .build/out/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /tmp/swarm-proof-P24-lk_3382t -enable-anonymous-context-mangled-names -file-compilation-dir /tmp/swarm-proof-P24-lk_3382t -Xcc -fno-omit-frame-pointer -Xcc -D_LIBCPP_HARDENING_MODE\\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -fmodules-prune-interval\\=86400 -Xcc -fmodules-prune-after\\=345600 -Xcc -I.build/out/Products/Debug-linux-x86_64/include -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources-normal/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\\=1 -no-auto-bridging-header-chaining -module-name NeNeSwarmCore -package-name repo -const-gather-protocols-file .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore_const_extract_protocols.json -in-process-plugin-server-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/libSwiftInProcPluginServer.so -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/local/lib/swift/host/plugins -parse-as-library -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Point.o -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Posture.o -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.o -index-unit-output-path /NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Point.o -index-unit-output-path /NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Posture.o -index-unit-output-path /NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.o -index-store-path .build/out -index-system-modules",
         "error: Build failed",
         "make: *** [Makefile:19: build] Error 1"
       ]
@@ -690,14 +690,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (5.55 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.46 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-005 swiftlint-baseline.json:1: 名前に baseline を含むファイル",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -716,14 +716,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (5.39 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.68 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-005 .gitignore:2: 検査の対象から外れる無視の指定 'Sources/NeNeSwarmCore/Hidden.swift'（生成物の置き場だけを無視する）",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -741,14 +741,14 @@
       ],
       "missing": [],
       "tail": [
-        "[79 / 88] NeNeSwarmEngine",
-        "[84 / 89] nene-swarm-product",
-        "[87 / 90] NeNeSwarmTerminal",
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (5.63 secs)",
+        "[89 / 104] NeNeSwarmCore",
+        "[103 / 108] AllExcludingTests",
+        "[106 / 109] NeNeSwarmTerminal",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.89 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "Sources/NeNeSwarmRender/Cell.swift:3:1: error: [Indentation] indent by 2 spaces",
-        "make: *** [Makefile:22: format] Error 123"
+        "make: *** [Makefile:26: format] Error 123"
       ]
     },
     {
@@ -767,14 +767,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (5.20 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.94 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-007 Sources/NeNeSwarmCore/.swiftlint.yml:1: ゲートが読まない場所の検査設定（入れ子の設定は道具が勝手に拾う）",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -793,14 +793,14 @@
       ],
       "missing": [],
       "tail": [
-        "[87 / 90] NeNeSwarmTerminal",
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (5.67 secs)",
+        "[106 / 109] NeNeSwarmTerminal",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.61 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "warning: Skipping enabled rule 'statement_position' because it requires SourceKit and SourceKit access is prohibited.",
         "lint: 有効にした規則が実行されていない（CNF-007）",
-        "make: *** [Makefile:25: lint] Error 1"
+        "make: *** [Makefile:29: lint] Error 1"
       ]
     },
     {
@@ -818,14 +818,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (5.51 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.83 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-006 docs/todo/current.md:27: 未定義の規則 ID ARC-099",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -843,14 +843,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (8.47 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.64 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-006 docs/QUALITY_GATES.md:1: active の QLT-008 に gate-proofs の証明行（| QLT-008 |）が無い",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -868,14 +868,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (21.88 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.65 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-006 docs/quality/gate-proofs.md:1: active の CNF-015 の証明行に実測が書かれていない（空の行は証明ではない）",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -893,14 +893,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (21.58 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.42 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-008 Sources/NeNeSwarmCore/Square.swift:1: TODO / FIXME の直後に (#Issue番号) が無い",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -922,7 +922,7 @@
         "python3 eng/conformance.py",
         "CNF-009 Package.swift:7: 許可リストに無い外部パッケージ",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -936,13 +936,13 @@
       "expected": "(FAILED|did NOT match)",
       "verdict": "pass",
       "evidence": [
-        "/tmp/tmp.4cXdLNFbng/swiftlint_linux_amd64.zip: FAILED",
+        "/tmp/tmp.hX6ggxwe04/swiftlint_linux_amd64.zip: FAILED",
         "sha256sum: WARNING: 1 computed checksum did NOT match"
       ],
       "missing": [],
       "tail": [
         "eng/install-tools.sh",
-        "/tmp/tmp.4cXdLNFbng/swiftlint_linux_amd64.zip: FAILED",
+        "/tmp/tmp.hX6ggxwe04/swiftlint_linux_amd64.zip: FAILED",
         "sha256sum: WARNING: 1 computed checksum did NOT match",
         "make: *** [Makefile:16: tools] Error 1"
       ]
@@ -964,14 +964,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (6.50 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.43 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-018 .github/workflows/ci.yml:30: CI で許す run はツールチェーン導入とゲートの 1 行だけ: swift build",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -989,14 +989,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (6.21 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.60 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-018 .github/workflows/ci.yml:19: アクションを commit SHA で固定していない: actions/checkout@v7",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1015,14 +1015,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (6.44 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.52 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-018 .github/workflows/ci.yml:16: if: は使えない（スキップされた必須 check は成功として数えられる）",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1064,10 +1064,10 @@
         "AssertionError: 'CNF-013' not found in [] : CNF-013 が Sources/Core/Board.swift で発火しない",
         "",
         "----------------------------------------------------------------------",
-        "Ran 106 tests in 0.546s",
+        "Ran 106 tests in 0.347s",
         "",
         "FAILED (failures=1)",
-        "make: *** [Makefile:31: conformance-test] Error 1"
+        "make: *** [Makefile:35: conformance-test] Error 1"
       ]
     },
     {
@@ -1085,14 +1085,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (6.05 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.51 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-015 Sources/NeNeSwarmCore/Probe.swift:2: Codable / Decodable / Encodable は使えない",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1111,14 +1111,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (6.14 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.63 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-017 Sources/NeNeSwarmCore/Probe.swift:5: print / readLine / exit 等は合成ルートだけ",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1132,18 +1132,18 @@
       "expected": "GIT-003 [0-9a-f]{7}: 件名は",
       "verdict": "pass",
       "evidence": [
-        "GIT-003 061cf21: 件名は `<type>(<scope>): <日本語の説明> (#<issue番号>)` の形（type は feat / fix / docs / refactor / test / build / ci / chore）"
+        "GIT-003 1089709: 件名は `<type>(<scope>): <日本語の説明> (#<issue番号>)` の形（type は feat / fix / docs / refactor / test / build / ci / chore）"
       ],
       "missing": [],
       "tail": [
         "python3 eng/validate-commit-message.py --range \"origin/main..HEAD\"",
         "commits: 1 件・違反 1 件",
         "----------------------------------------------------------------------",
-        "Ran 106 tests in 0.430s",
+        "Ran 106 tests in 0.340s",
         "",
         "OK",
-        "GIT-003 061cf21: 件名は `<type>(<scope>): <日本語の説明> (#<issue番号>)` の形（type は feat / fix / docs / refactor / test / build / ci / chore）",
-        "make: *** [Makefile:34: commits] Error 1"
+        "GIT-003 1089709: 件名は `<type>(<scope>): <日本語の説明> (#<issue番号>)` の形（type は feat / fix / docs / refactor / test / build / ci / chore）",
+        "make: *** [Makefile:38: commits] Error 1"
       ]
     },
     {
@@ -1188,7 +1188,7 @@
         "Sources/NeNeSwarmCore/Probe.swift:548:29: error: Large Tuple Violation: Tuples should have at most 2 members (large_tuple)",
         "Sources/NeNeSwarmCore/Probe.swift:570:9: error: Nesting Violation: Types should be nested at most 1 level deep (nesting)",
         "Sources/NeNeSwarmCore/Probe.swift:2:1: error: Type Body Length Violation: Enum body should span 300 lines or less excluding comments and whitespace: currently spans 550 lines (type_body_length)",
-        "make: *** [Makefile:25: lint] Error 2"
+        "make: *** [Makefile:29: lint] Error 2"
       ]
     },
     {
@@ -1206,14 +1206,40 @@
       ],
       "missing": [],
       "tail": [
-        "[75 / 86] NeNeSwarmEngine",
-        "[77 / 87] nene-swarm-product",
-        "[80 / 88] NeNeSwarmRender",
-        "[87 / 90] NeNeSwarmTerminal",
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (4.65 secs)",
+        "[89 / 104] NeNeSwarmCore",
+        "[89 / 104] NeNeSwarmTerminal",
+        "[104 / 109] nene-swarm-product",
+        "[106 / 109] NeNeSwarmTerminal",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.58 secs)",
         "swift-strict: SwiftPM かコンパイラが警告を出した（QLT-002）",
         "make: *** [Makefile:19: build] Error 1"
+      ]
+    },
+    {
+      "id": "P48",
+      "rules": [
+        "QLT-001"
+      ],
+      "violation": "当たり判定のテストの期待する得点を 1 つ変える（make check の中で swift test が実際に回って落ちること）",
+      "command": "make check",
+      "exit": 2,
+      "expected": "✘ Test aShotThatEndsInsideTheEnemyHitsIt",
+      "verdict": "pass",
+      "evidence": [
+        "✘ Test aShotThatEndsInsideTheEnemyHitsIt() recorded an issue at CollisionTests.swift:22:9: Expectation failed: game.score == 51",
+        "✘ Test aShotThatEndsInsideTheEnemyHitsIt() failed after 0.002 seconds with 1 issue."
+      ],
+      "missing": [],
+      "tail": [
+        "✘ Test run with 55 tests in 9 suites failed after 0.922 seconds with 1 issue.",
+        "Note: Some test targets reported failures:",
+        "  - NeNeSwarmCoreTests (Swift Testing)",
+        "----------------------------------------------------------------------",
+        "Ran 106 tests in 0.307s",
+        "",
+        "OK",
+        "make: *** [Makefile:23: test] Error 1"
       ]
     },
     {
@@ -1237,7 +1263,7 @@
         " 6 |         case \"a\":",
         " 7 |             return 1",
         "Failed frontend command:",
-        "/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-frontend -frontend -c -primary-file Sources/NeNeSwarmCore/Probe.swift Sources/NeNeSwarmCore/Square.swift -emit-dependencies-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.d -emit-const-values-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.swiftconstvalues -emit-reference-dependencies-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.swiftdeps -serialize-diagnostics-path .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.dia -target x86_64-unknown-linux-gnu -disable-objc-interop -I .build/out/Products/Debug-linux-x86_64 -module-cache-path .build/out/ModuleCache.noindex -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\\=dwarf -dwarf-version\\=4 -warnings-as-errors -warnings-as-errors -swift-version 6 -Onone -D SWIFT_PACKAGE -D DEBUG -D SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -D Xcode -serialize-debugging-options -enable-upcoming-feature ExistentialAny -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -external-plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins/testing\\#/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-plugin-server -validate-clang-modules-once -clang-build-session-file .build/out/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /tmp/swarm-proof-P50-rv5xsez_ -enable-anonymous-context-mangled-names -file-compilation-dir /tmp/swarm-proof-P50-rv5xsez_ -Xcc -fno-omit-frame-pointer -Xcc -D_LIBCPP_HARDENING_MODE\\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -fmodules-prune-interval\\=86400 -Xcc -fmodules-prune-after\\=345600 -Xcc -I.build/out/Products/Debug-linux-x86_64/include -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources-normal/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\\=1 -no-auto-bridging-header-chaining -module-name NeNeSwarmCore -package-name repo -const-gather-protocols-file .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore_const_extract_protocols.json -in-process-plugin-server-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/libSwiftInProcPluginServer.so -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/local/lib/swift/host/plugins -parse-as-library -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.o -index-unit-output-path /NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.o -index-store-path .build/out -index-system-modules",
+        "/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-frontend -frontend -c Sources/NeNeSwarmCore/BonusProgress.swift Sources/NeNeSwarmCore/Box.swift Sources/NeNeSwarmCore/Captive.swift Sources/NeNeSwarmCore/Difficulty.swift Sources/NeNeSwarmCore/Dive.swift Sources/NeNeSwarmCore/DiveChoice.swift Sources/NeNeSwarmCore/DivePurpose.swift Sources/NeNeSwarmCore/Enemy.swift Sources/NeNeSwarmCore/EnemyKind.swift Sources/NeNeSwarmCore/EnemyMotion.swift Sources/NeNeSwarmCore/Field.swift Sources/NeNeSwarmCore/Flight.swift Sources/NeNeSwarmCore/Game+Advance.swift Sources/NeNeSwarmCore/Game+Bonus.swift Sources/NeNeSwarmCore/Game+Collisions.swift Sources/NeNeSwarmCore/Game+Enemies.swift Sources/NeNeSwarmCore/Game+EnemyShots.swift Sources/NeNeSwarmCore/Game+March.swift Sources/NeNeSwarmCore/Game+PlayerShots.swift Sources/NeNeSwarmCore/Game+Saucer.swift Sources/NeNeSwarmCore/Game+Ship.swift Sources/NeNeSwarmCore/Game+Stages.swift Sources/NeNeSwarmCore/Game.swift Sources/NeNeSwarmCore/GameEnding.swift Sources/NeNeSwarmCore/GameEvent.swift Sources/NeNeSwarmCore/GameStatus.swift Sources/NeNeSwarmCore/GameStep.swift Sources/NeNeSwarmCore/GameSummary.swift Sources/NeNeSwarmCore/HighScore.swift Sources/NeNeSwarmCore/HighScoreInsertion.swift Sources/NeNeSwarmCore/HighScoreRank.swift Sources/NeNeSwarmCore/HighScoreTable.swift Sources/NeNeSwarmCore/HitCause.swift Sources/NeNeSwarmCore/MarchHeading.swift Sources/NeNeSwarmCore/PilotInput.swift Sources/NeNeSwarmCore/PlayPhase.swift -primary-file Sources/NeNeSwarmCore/Point.swift -primary-file Sources/NeNeSwarmCore/Posture.swift -primary-file Sources/NeNeSwarmCore/Probe.swift Sources/NeNeSwarmCore/RescueOutcome.swift Sources/NeNeSwarmCore/Saucer.swift Sources/NeNeSwarmCore/SaucerState.swift Sources/NeNeSwarmCore/Scene.swift Sources/NeNeSwarmCore/SceneDurations.swift Sources/NeNeSwarmCore/Session.swift Sources/NeNeSwarmCore/SessionEvent.swift Sources/NeNeSwarmCore/SessionStep.swift Sources/NeNeSwarmCore/Shield.swift Sources/NeNeSwarmCore/ShieldCell.swift Sources/NeNeSwarmCore/Ship.swift Sources/NeNeSwarmCore/ShipPresence.swift Sources/NeNeSwarmCore/Shot.swift Sources/NeNeSwarmCore/ShotFate.swift Sources/NeNeSwarmCore/Slot.swift Sources/NeNeSwarmCore/Square.swift Sources/NeNeSwarmCore/Stage.swift Sources/NeNeSwarmCore/StageKind.swift Sources/NeNeSwarmCore/Steer.swift Sources/NeNeSwarmCore/Swarm.swift Sources/NeNeSwarmCore/Trigger.swift Sources/NeNeSwarmCore/Tuning.swift Sources/NeNeSwarmCore/Velocity.swift Sources/NeNeSwarmCore/Wing.swift -supplementary-output-file-map .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/supplementaryOutputs-12 -target x86_64-unknown-linux-gnu -disable-objc-interop -I .build/out/Products/Debug-linux-x86_64 -module-cache-path .build/out/ModuleCache.noindex -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\\=dwarf -dwarf-version\\=4 -warnings-as-errors -warnings-as-errors -swift-version 6 -Onone -D SWIFT_PACKAGE -D DEBUG -D SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -D Xcode -serialize-debugging-options -enable-upcoming-feature ExistentialAny -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -external-plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins/testing\\#/root/.local/share/swiftly/toolchains/6.4.1/usr/bin/swift-plugin-server -validate-clang-modules-once -clang-build-session-file .build/out/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /tmp/swarm-proof-P50-lipr3bby -enable-anonymous-context-mangled-names -file-compilation-dir /tmp/swarm-proof-P50-lipr3bby -Xcc -fno-omit-frame-pointer -Xcc -D_LIBCPP_HARDENING_MODE\\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -fmodules-prune-interval\\=86400 -Xcc -fmodules-prune-after\\=345600 -Xcc -I.build/out/Products/Debug-linux-x86_64/include -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources-normal/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources/x86_64 -Xcc -I.build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\\=1 -no-auto-bridging-header-chaining -module-name NeNeSwarmCore -package-name repo -const-gather-protocols-file .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/NeNeSwarmCore_const_extract_protocols.json -in-process-plugin-server-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/libSwiftInProcPluginServer.so -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/lib/swift/host/plugins -plugin-path /root/.local/share/swiftly/toolchains/6.4.1/usr/local/lib/swift/host/plugins -parse-as-library -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Point.o -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Posture.o -o .build/out/Intermediates.noindex/NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.o -index-unit-output-path /NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Point.o -index-unit-output-path /NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Posture.o -index-unit-output-path /NeNeSwarm.build/Debug-linux-x86_64/NeNeSwarmCore-t.build/Objects-normal/x86_64/Probe.o -index-store-path .build/out -index-system-modules",
         "error: Build failed",
         "make: *** [Makefile:19: build] Error 1"
       ]
@@ -1258,14 +1284,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (3.91 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.39 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-013 Sources/NeNeSwarmCore/Side.swift:15: 全捕捉（default / @unknown default / case _ / case let x / 括弧や並びに隠れた _ と束縛）は網羅性検査を殺す",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1284,14 +1310,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (3.81 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.43 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-013 Sources/NeNeSwarmCore/Side.swift:15: 全捕捉（default / @unknown default / case _ / case let x / 括弧や並びに隠れた _ と束縛）は網羅性検査を殺す",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1310,14 +1336,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (4.00 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.49 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-013 Sources/NeNeSwarmCore/Pair.swift:11: 全捕捉（default / @unknown default / case _ / case let x / 括弧や並びに隠れた _ と束縛）は網羅性検査を殺す",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1336,14 +1362,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (3.91 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.37 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-021 Sources/NeNeSwarmCore/Square+Bypass.swift:3: extension に init を書かない（型の本体の唯一のファクトリを迂回できる）",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1362,14 +1388,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (3.83 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.58 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-022 Sources/NeNeSwarmCore/Probe.swift:4: async / await / Task / actor / Thread / Dispatch は使えない（並行の形は合成ルートの 1 本のループだけ）",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1392,7 +1418,7 @@
         "python3 eng/conformance.py",
         "CNF-014 Sources/NeNeSwarmTerminal/Screen.swift:1: リフレクション・下線付き属性・@preconcurrency・マクロ・動的呼び出しは使えない",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1412,14 +1438,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (3.80 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.60 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-005 .swift-format:1: swift-format の設定 rules は使えない（規則の無効化はリポジトリ全体の抑制になる・M8-j）",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1437,14 +1463,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (3.95 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.92 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-023 README.md:3: 登録商標のゲーム名・会社名は書かない。固定画面のシューティング（fixed shooter）と書く",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1464,14 +1490,14 @@
       ],
       "missing": [],
       "tail": [
-        "[91 / 91] nene-swarm-product",
-        "Build complete! (3.91 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (4.40 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-011 Sources/NeNeSwarmTerminal/Screen.swift:2: NeNeSwarmTerminal は NeNeSwarmCore を import できない",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1492,14 +1518,14 @@
       ],
       "missing": [],
       "tail": [
-        "[92 / 92] nene-swarm-product",
-        "Build complete! (4.83 secs)",
+        "[110 / 110] nene-swarm-product",
+        "Build complete! (5.26 secs)",
         "eng/swift-sources.sh | xargs -0 swift-format lint --strict --configuration .swift-format",
         "eng/lint.sh .tools/swiftlint --config .swiftlint.yml",
         "python3 eng/conformance.py",
         "CNF-011 Sources/NeNeSwarmCore/Probe.swift:1: NeNeSwarmCore は FoundationEssentials を import できない",
         "conformance: 23 規則・違反 1 件",
-        "make: *** [Makefile:28: conformance] Error 1"
+        "make: *** [Makefile:32: conformance] Error 1"
       ]
     },
     {
@@ -1521,10 +1547,10 @@
         "AssertionError: 'CNF-013' not found in [] : CNF-013 が Sources/Core/Board.swift で発火しない",
         "",
         "----------------------------------------------------------------------",
-        "Ran 106 tests in 0.388s",
+        "Ran 106 tests in 0.297s",
         "",
         "FAILED (failures=8)",
-        "make: *** [Makefile:31: conformance-test] Error 1"
+        "make: *** [Makefile:35: conformance-test] Error 1"
       ]
     },
     {

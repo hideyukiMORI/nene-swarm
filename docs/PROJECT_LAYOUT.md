@@ -10,8 +10,8 @@
 
 ## 1. 承認されたモジュール
 
-空の「将来用 target」を作らない。**2026-10-27 時点で `Package.swift` の target は 0 本**であり、下の一覧は「承認された形」である（ADR 0004）。
-各 target は最初の具体的な責務が生じた PR で足す（Phase 3-1 で `NeNeSwarmCore` とそのテストが最初に入る）。
+空の「将来用 target」を作らない。**2026-10-27 時点で `Package.swift` にあるのは `NeNeSwarmCore` とそのテスト（Issue #3）だけ**で、下の一覧は「承認された形」である（ADR 0004）。
+残りの target は最初の具体的な責務が生じた PR で足す（Phase 3-2 で Engine・Render・Terminal・合成ルートが入る）。
 
 ```text
 nene-swarm (executable)
