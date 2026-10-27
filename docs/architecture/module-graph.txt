@@ -7,7 +7,7 @@
 NeNeSwarmCore          kind=library     deps=
 NeNeSwarmEngine        kind=library     deps=NeNeSwarmCore
 NeNeSwarmRender        kind=library     deps=NeNeSwarmCore,NeNeSwarmEngine
-NeNeSwarmTerminal      kind=library     deps=NeNeSwarmRender                                       std=Glibc unsafe=allowed
+NeNeSwarmTerminal      kind=library     deps=NeNeSwarmRender                                       std=Glibc,Synchronization unsafe=allowed
 nene-swarm             kind=executable  deps=NeNeSwarmCore,NeNeSwarmEngine,NeNeSwarmRender,NeNeSwarmTerminal std=Glibc role=composition-root
 
 NeNeSwarmCoreTests     kind=test        deps=NeNeSwarmCore                                         std=Testing

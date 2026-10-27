@@ -164,6 +164,6 @@ Waivers: none | WVR-NNNN
 
 現在のタスクは [docs/todo/current.md](docs/todo/current.md)。GitHub Issue が正で、そこは要約。
 
-- 動くもの: `make check`（Core のゲームの進行と当たり判定・不変条件のテスト 600 ゲーム・ADR 0005 / 0006）
-- 動かないもの: 画面とパイロット。Phase 3-2 で単純なパイロットのまま端末に描き、Phase 3-4 で本物のパイロットとキャストを入れる
+- 動くもの: `make check`（smoke を含む）・`nene-swarm`（仮のパイロットで TITLE → PLAY → GAME OVER を 80 × 24 に描く・ADR 0005〜0007）
+- 動かないもの: 本物のパイロットとキャスト・セリフ（Phase 3-4）・専用の色・派手な演出・ハイスコアのファイル・大きな端末の配置（Phase 3-5）。実機の画面写真は Phase 3-3
 - 施主の決定は [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) にそろっている。決定を覆したくなった点や、要件に無い機能を足したくなった点は、自分で決めずに施主に聞く

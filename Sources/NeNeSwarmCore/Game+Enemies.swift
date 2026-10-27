@@ -59,8 +59,8 @@ extension Game {
         enemies[index].motion = .diving(Dive(purpose: purpose, velocity: Velocity(dx: swing, dy: -3), elapsed: 0))
     }
 
-    /// 隊列の外を飛んでいる敵の数。
-    var airborneCount: Int {
+    /// 隊列の外を飛んでいる敵の数（急降下・ビーム・戻り）。
+    public var airborneCount: Int {
         enemies.filter { enemy in
             switch enemy.motion {
             case .diving, .beaming, .returning: true

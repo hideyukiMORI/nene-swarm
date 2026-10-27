@@ -22,3 +22,4 @@ ADR は「なぜそう決めたか」「何を却下したか」を書く。
 | [0004](0004-target-split-and-dependency-graph.md) | target は Core・Engine・Render・Terminal・合成ルートの 5 つに分け、兄弟と同じ向きで依存させる | 受理 |
 | [0005](0005-fixed-point-field-and-tick-step.md) | 座標は 1 セル 16 単位の整数で持ち、ゲームは固定の順番の 1 刻み関数だけで進める | 受理 |
 | [0006](0006-invariant-tests-and-measured-game-length.md) | 公表値の代わりに不変条件のテストでゲートを組み、release 構成で 600 ゲームを回す | 受理 |
+| [0007](0007-terminal-loop-and-first-screen.md) | 端末と描画の土台を Igo から移し、30 刻み／秒の 1 本のループで 80 × 24 に描く | 受理 |

@@ -10,8 +10,7 @@
 
 ## 1. 承認されたモジュール
 
-空の「将来用 target」を作らない。**2026-10-27 時点で `Package.swift` にあるのは `NeNeSwarmCore` とそのテスト（Issue #3）だけ**で、下の一覧は「承認された形」である（ADR 0004）。
-残りの target は最初の具体的な責務が生じた PR で足す（Phase 3-2 で Engine・Render・Terminal・合成ルートが入る）。
+空の「将来用 target」を作らない。**2026-10-27 時点で、下の 5 つの target とそれぞれのテストがすべて `Package.swift` にある**（Core は Issue #3、残りは Issue #5）。
 
 ```text
 nene-swarm (executable)
@@ -43,7 +42,7 @@ NeNeSwarmCore
 NeNeSwarmCore      -> （無し）
 NeNeSwarmEngine    -> NeNeSwarmCore
 NeNeSwarmRender    -> NeNeSwarmCore, NeNeSwarmEngine
-NeNeSwarmTerminal  -> NeNeSwarmRender                         ＋ 標準モジュール Glibc
+NeNeSwarmTerminal  -> NeNeSwarmRender                         ＋ 標準モジュール Glibc・Synchronization（ADR 0007）
 nene-swarm         -> 上の 4 つすべて（明示的な合成のためだけに） ＋ 標準モジュール Glibc
 ```
 
