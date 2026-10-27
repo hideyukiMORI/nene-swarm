@@ -6,6 +6,7 @@
 ボーナスステージ・上位 5 件のハイスコアがあります。タイトル → プレイ → ゲームオーバー → タイトルを繰り返します。
 4 名のパイロットが交代で乗り、それぞれの口調でずっとボヤき、ジョークを言い、得意がります。見ているだけで、何もしなくてかまいません。
 
+[![release](https://img.shields.io/github/v/release/hideyukiMORI/nene-swarm)](https://github.com/hideyukiMORI/nene-swarm/releases/latest)
 ![platform](https://img.shields.io/badge/platform-Linux%20x86__64%20%2F%20WSL2-555)
 ![license](https://img.shields.io/badge/license-MIT-555)
 
@@ -14,13 +15,13 @@
 [NeNe Gambit](https://github.com/hideyukiMORI/nene-gambit)（チェス）・[NeNe Reversi](https://github.com/hideyukiMORI/nene-reversi)・
 [NeNe Igo](https://github.com/hideyukiMORI/nene-igo)（囲碁）・[NeNe Poker](https://github.com/hideyukiMORI/nene-poker) の兄弟です。
 
-🚧 **まだ公開していません。** 下に書いたことは、いまのソースで動きます。最初のリリース（Windows Terminal で撮った画面写真つき）を準備しています。
+🧪 **ベータ版です。** [v0.1.0](https://github.com/hideyukiMORI/nene-swarm/releases/tag/v0.1.0) をベータとして公開しました。Windows Terminal の実機での見え方はまだ確かめていません。画面写真は後で足します。
 
 ---
 
 ## 入れ方
 
-最初のリリースを公開したあとは、次の 1 行で入ります。
+次の 1 行で入ります。
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/hideyukiMORI/nene-swarm/main/install.sh | bash

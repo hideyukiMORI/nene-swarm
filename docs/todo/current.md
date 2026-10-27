@@ -18,7 +18,7 @@
 | Phase 3-5b 専用の色・派手な演出 | ✅ 2026-10-27（Issue #11・ADR 0010） |
 | Phase 3-5c ハイスコアのファイル・大きな端末の配置 | ✅ 2026-10-27（Issue #13・ADR 0011） |
 | Phase 4 公開の準備 | ✅ 2026-10-27（Issue #15・ADR 0012・`make release` は再現可能） |
-| Phase 4 公開（v0.1.0 のタグと Release） | ⏸ 施主の確認待ち |
+| Phase 4 公開（v0.1.0・ベータ） | ✅ 2026-10-27（Q14・再ダウンロードの照合と install.sh の導入と smoke を確かめた） |
 
 ## 動くもの
 
@@ -29,11 +29,10 @@
 ## 動かないもの
 
 - `main` への直接 push・force push が拒まれることは試していない（ruleset の読み戻しと PR の `BLOCKED` で代えた・gate-proofs 第 4 節）
-- Release の公開（施主の確認待ち）
+- `install.ps1` の 1 行からの導入（PowerShell 側）は未確認
 - Windows Terminal での見え方の確認（Phase 3-3。撮影の権限待ち）
 
 ## 次の 1 手
 
-施主の手番: (1) 実機の画面写真（Phase 3-3）の撮り方を決める（撮影の許可のルールを足すか、施主が Windows Terminal で見る）。
-(2) v0.1.0 の公開の可否。公開するときは ADR 0012 の決定 6 の手順で、clean な main から作り直してタグと Release を作り、再ダウンロードして照合し、
-`install.sh` と `install.ps1` の 1 行からの導入を確かめる。
+施主の手番: 実機の画面写真（Phase 3-3）。撮影の許可のルールを足すか、施主が Windows Terminal で `nene-swarm` を見る。
+見え方で直すところが出たら Issue にし、写真を README の先頭に置く。
