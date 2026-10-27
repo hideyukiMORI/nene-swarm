@@ -10,7 +10,8 @@ public struct Game: Sendable, Hashable {
     static let introTicks = 60
     static let clearedTicks = 90
     static let respawnTicks = 60
-    static let explosionTicks = 12
+    /// 爆発が続く刻みの数（Render が破片を飛ばすのに使う）。
+    public static let explosionTicks = 12
 
     /// いまのステージ。
     public internal(set) var stage: Stage

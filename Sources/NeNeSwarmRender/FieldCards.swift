@@ -5,6 +5,7 @@ import NeNeSwarmEngine
 struct FieldCards {
     let layout: ScreenLayout
     let theme: Theme
+    let effects: Effects
 
     /// TITLE: 題・ひとこと・ハイスコアの上位 5 件・次のゲーム。
     func title(_ state: ScreenState, into grid: inout Grid) {
@@ -22,7 +23,7 @@ struct FieldCards {
 
     /// GAME OVER: 終わり方・最終スコア・到達ステージ・新記録。
     func gameOver(_ summary: GameSummary, persona: Persona, highScores: HighScoreTable, into grid: inout Grid) {
-        center(Wording.gameOver, row: 6, color: theme.accentAlt, into: &grid)
+        big(Wording.gameOver, top: 2, color: theme.accentAlt, into: &grid)
         center(Wording.ending(summary.ending), row: 8, color: theme.dim, into: &grid)
         center(persona.name + " " + persona.face, row: 9, color: theme.accent, into: &grid)
         center("SCORE " + Wording.digits(summary.score, 7), row: 11, color: theme.text, into: &grid)
@@ -32,16 +33,53 @@ struct FieldCards {
         }
     }
 
-    /// ステージの始まりと終わりの帯（盤面の真ん中の行）。
-    func banner(_ game: Game, into grid: inout Grid) {
-        switch game.phase {
-        case .intro:
-            center(Wording.stageBanner(game.stage), row: 10, color: theme.accent, into: &grid)
-        case .cleared:
-            center(Wording.stageClear, row: 10, color: theme.accent, into: &grid)
-        case .combat:
-            break
+    /// 大きな文字の帯（ステージの始まりと終わり・PERFECT・TWIN WING）と、倒した場所に浮かぶ得点（FR-02f）。
+    func overlay(_ game: Game, into grid: inout Grid) {
+        for popup in effects.popups {
+            let rise = (effects.clock - popup.born) / 10
+            let row = Field.cell(popup.point.y) - rise
+            let column = FieldMapping.column(popup.point.x)
+            write("+" + popup.text, at: (column, row), color: theme.spark, into: &grid)
         }
+        if let text = banner(game) {
+            big(text, top: 9, color: theme.spark, into: &grid)
+        }
+    }
+
+    private func banner(_ game: Game) -> String? {
+        if effects.showsPerfect {
+            return Wording.perfect
+        }
+        if effects.showsTwin {
+            return Wording.twinWing
+        }
+        switch game.phase {
+        case .intro: return Wording.stageBanner(game.stage)
+        case .cleared: return Wording.stageClear
+        case .combat: return nil
+        }
+    }
+
+    /// 大きな文字を盤面の真ん中に塗る（点は空白のセルの背景色）。
+    private func big(_ text: String, top: Int, color: Rgb, into grid: inout Grid) {
+        let left = layout.fieldColumn + (ScreenLayout.fieldWidth - BigFont.span(text)) / 2
+        for (row, cells) in BigFont.pixels(text).enumerated() {
+            for (offset, lit) in cells.enumerated() where lit {
+                grid.paint(column: left + offset, row: layout.fieldRow + top + row, width: 1, color: color)
+            }
+        }
+    }
+
+    /// 盤面の中だけに文字を書く（はみ出す分は捨てる）。
+    private func write(_ text: String, at position: (column: Int, row: Int), color: Rgb, into grid: inout Grid) {
+        let (column, row) = position
+        guard (0..<ScreenLayout.fieldHeight).contains(row), column >= 0 else {
+            return
+        }
+        let visible = String(text.prefix(max(0, ScreenLayout.fieldWidth - column)))
+        grid.write(
+            visible, column: layout.fieldColumn + column, row: layout.fieldRow + row,
+            colors: CellColors(foreground: color, background: theme.ground))
     }
 
     private static func line(_ rank: Int, _ table: HighScoreTable) -> String {

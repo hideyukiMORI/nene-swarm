@@ -4,14 +4,33 @@ import NeNeSwarmCore
 struct FieldPainter {
     let layout: ScreenLayout
     let theme: Theme
+    let effects: Effects
 
-    /// 盤面を地の色で塗る。
+    /// 星の数。
+    static let starCount = 36
+
+    /// 盤面を地の色で塗り（光っている間は火花の色を少し混ぜる）、流れる星を置く（FR-02f）。
     func clear(_ grid: inout Grid) {
+        let ground = effects.isFlashing ? Rgb.mix(theme.ground, theme.spark, percent: 30) : theme.ground
         for row in 0..<ScreenLayout.fieldHeight {
             grid.paint(
-                column: layout.fieldColumn, row: layout.fieldRow + row, width: ScreenLayout.fieldWidth,
-                color: theme.ground)
+                column: layout.fieldColumn, row: layout.fieldRow + row, width: ScreenLayout.fieldWidth, color: ground)
         }
+        for index in 0..<Self.starCount {
+            let (column, row) = Self.star(index, clock: effects.clock)
+            grid.write(
+                ".", column: layout.fieldColumn + column, row: layout.fieldRow + row,
+                colors: CellColors(foreground: theme.star, background: ground))
+        }
+    }
+
+    /// 星の位置。3 つの層で流れる速さが違う（奥ほど遅い）。並びは番号から決まる（乱数を使わない）。
+    static func star(_ index: Int, clock: Int) -> (column: Int, row: Int) {
+        let hash = UInt32(truncatingIfNeeded: index) &* 2_654_435_761
+        let column = Int(hash % UInt32(ScreenLayout.fieldWidth))
+        let start = Int((hash >> 8) % UInt32(ScreenLayout.fieldHeight))
+        let pace = 4 + index % 3 * 6
+        return (column, (start + clock / pace) % ScreenLayout.fieldHeight)
     }
 
     /// 遊んでいるゲームを描く。
@@ -34,8 +53,9 @@ struct FieldPainter {
             fill(saucer.box, theme.saucer, into: &grid)
         }
         if case .active(let ship) = game.ship {
+            let glowing = effects.showsTwin && effects.clock / 3 % 2 == 0
             for hull in ship.hulls {
-                fill(hull, theme.ship, into: &grid)
+                fill(hull, glowing ? theme.spark : theme.ship, into: &grid)
             }
         }
         for shot in game.playerShots {
@@ -76,6 +96,20 @@ struct FieldPainter {
         let row = FieldMapping.row(top: enemy.position.y, height: Enemy.height)
         for (offset, cell) in pattern.enumerated() {
             paint(column: column + offset, row: row, color: cell, into: &grid)
+        }
+    }
+
+    /// 爆発の破片: 4 つの火花が、爆発の真ん中から斜めに飛び散る。
+    private func debris(around enemy: Enemy, ticksLeft: Int, into grid: inout Grid) {
+        let spread = Game.explosionTicks - ticksLeft
+        let center = FieldMapping.column(enemy.box.centerX)
+        let row = FieldMapping.row(top: enemy.position.y, height: Enemy.height)
+        let dx = 2 + spread / 2
+        let dy = spread / 4 + 1
+        for (column, line) in [
+            (center - dx, row - dy), (center + dx, row - dy), (center - dx, row + dy), (center + dx, row + dy),
+        ] {
+            paint(column: column, row: line, color: theme.spark, into: &grid)
         }
     }
 

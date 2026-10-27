@@ -10,4 +10,14 @@ public struct Rgb: Sendable, Hashable {
         self.green = green
         self.blue = blue
     }
+
+    /// 2 つの色を混ぜる（`percent` は 2 つ目の色の割合）。
+    static func mix(_ first: Rgb, _ second: Rgb, percent: Int) -> Rgb {
+        func channel(_ a: UInt8, _ b: UInt8) -> UInt8 {
+            UInt8((Int(a) * (100 - percent) + Int(b) * percent) / 100)
+        }
+        return Rgb(
+            red: channel(first.red, second.red), green: channel(first.green, second.green),
+            blue: channel(first.blue, second.blue))
+    }
 }

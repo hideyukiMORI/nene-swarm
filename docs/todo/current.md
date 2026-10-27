@@ -15,8 +15,8 @@
 | Phase 3-3 実機の画面写真 | ⏸ 撮影（PowerShell の PrintWindow）の権限待ち・施主の手番 |
 | Phase 3-4 パイロットの AI とキャスト 4 名 | ✅ 2026-10-27（Issue #7・ADR 0008・NORMAL 平均 約 3 分 20 秒） |
 | Phase 3-5a セリフと COMMS 欄 | ✅ 2026-10-27（Issue #9・ADR 0009） |
-| Phase 3-5b 専用の色・派手な演出 | 🔲 次 |
-| Phase 3-5c ハイスコアのファイル・大きな端末の配置 | 🔲 |
+| Phase 3-5b 専用の色・派手な演出 | ✅ 2026-10-27（Issue #11・ADR 0010） |
+| Phase 3-5c ハイスコアのファイル・大きな端末の配置 | 🔲 次 |
 | Phase 4 公開 | 🔲 別 Issue |
 
 ## 動くもの
@@ -28,11 +28,11 @@
 ## 動かないもの
 
 - `main` への直接 push・force push が拒まれることは試していない（ruleset の読み戻しと PR の `BLOCKED` で代えた・gate-proofs 第 4 節）
-- 専用の色・派手な演出（Phase 3-5b）・ハイスコアのファイル・大きな端末の配置（Phase 3-5c）
+- ハイスコアのファイル・大きな端末の配置（Phase 3-5c）
 - Windows Terminal での見え方の確認（Phase 3-3。撮影の権限待ち）
 
 ## 次の 1 手
 
-Phase 3-5b: 12 テーマに自機・敵（種類ごと）・弾・トーチカ・UFO・ビーム・爆発の専用の色を足し、コントラストのテスト（文字 4.5:1・自機と敵と弾 3:1）。
-星空・飛び散る爆発・浮かぶ得点・画面の光り・大きな文字の STAGE の帯・2 機並びの演出（FR-02f）。
+Phase 3-5c: ハイスコアのファイル（`$XDG_STATE_HOME/nene-swarm/`、無ければ `~/.local/state/nene-swarm/`・読めなければ起動中だけ）と、
+大きな端末の配置（FR-17 の 2 段目・盤面の下に COMMS の直近 2 行）。
 Phase 3-3 は、施主が撮影の権限を足すか、Windows Terminal で `nene-swarm` を起動して画面を見てもらってから。

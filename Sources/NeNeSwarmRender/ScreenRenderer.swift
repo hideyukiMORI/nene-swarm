@@ -23,15 +23,15 @@ public enum ScreenRenderer {
         band(row: 0, theme: theme, into: &grid)
         grid.write(ScreenChrome.header(state, glyphs: glyphs), column: 0, row: 0, background: theme.panel)
         frame(layout, glyphs: glyphs, theme: theme, into: &grid)
-        let painter = FieldPainter(layout: layout, theme: theme)
-        let cards = FieldCards(layout: layout, theme: theme)
+        let painter = FieldPainter(layout: layout, theme: theme, effects: state.effects)
+        let cards = FieldCards(layout: layout, theme: theme, effects: state.effects)
         painter.clear(&grid)
         switch state.session.scene {
         case .title:
             cards.title(state, into: &grid)
         case .play(let game):
             painter.draw(game, into: &grid)
-            cards.banner(game, into: &grid)
+            cards.overlay(game, into: &grid)
         case .gameOver(let summary, _):
             cards.gameOver(summary, persona: state.persona, highScores: state.highScores, into: &grid)
         }
