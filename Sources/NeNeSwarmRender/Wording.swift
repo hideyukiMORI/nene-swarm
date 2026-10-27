@@ -51,6 +51,8 @@ enum Wording {
     }
 
     static let stageClear = "STAGE CLEAR"
+    static let perfect = "PERFECT!"
+    static let twinWing = "TWIN WING!"
     static let gameOver = "GAME OVER"
     static let highScores = "HIGH SCORES"
     static let newRecord = "NEW RECORD"

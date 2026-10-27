@@ -17,11 +17,14 @@ public struct ScreenState: Sendable {
     public let persona: Persona
     /// いちばん新しいセリフ（まだ無ければ nil）。
     public let remark: Remark?
+    /// 画面の演出。
+    public let effects: Effects
 
     /// 組を作る。
     public init(
         session: Session, display: DisplayOptions, difficulty: Difficulty, seed: UInt64, highScores: HighScoreTable,
-        persona: Persona, remark: Remark?
+        persona: Persona, remark: Remark?,
+        effects: Effects
     ) {
         self.session = session
         self.display = display
@@ -30,6 +33,7 @@ public struct ScreenState: Sendable {
         self.highScores = highScores
         self.persona = persona
         self.remark = remark
+        self.effects = effects
     }
 
     /// 画面に出すゲームの番号（TITLE では次に始まるゲーム）。

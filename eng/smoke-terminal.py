@@ -6,7 +6,7 @@
 見ること:
 - alternate screen に入り、24 ビットの色で盤面と HUD（`GAME 001`）を描く
 - `t` で次のテーマ（PHOSPHOR）に、`d` で次の難易度（HARD）に替わる
-- 場面が TITLE から PLAY（`STAGE 1` の帯）へ進む
+- 場面が TITLE から PLAY（HUD の `HOSTILES`）へ進む
 - 罫線の幅の問い合わせに答えない端末（この疑似端末）では ASCII の枠に落ちる
 - `q`・Ctrl+C・SIGTERM のどれで終わっても exit 0 で、出力の最後が端末を戻す列で、termios の lflag が起動前と同じ
 - SIGSEGV（異常終了）でも端末を戻してから、そのシグナルで死ぬ
@@ -149,7 +149,7 @@ def main() -> int:
             check("t: 次のテーマ（PHOSPHOR）に替わる", "PHOSPHOR" in plain, failures)
             last = "\n".join(screen(text[: text.rfind(LEAVE)]))
             check("d: 次の難易度（HARD）に替わる", "DIFFICULTY HARD" in last and "LEVEL    HARD" in last, failures)
-            check("TITLE から PLAY へ進み、ステージの帯を出す", "STAGE 1" in plain, failures)
+            check("TITLE から PLAY へ進む（HUD に HOSTILES が出る）", "HOSTILES" in plain, failures)
             check("幅の問い合わせに答えない端末では ASCII の枠に落ちる", "+-[ STATUS ]" in plain and "┌" not in plain, failures)
         if label == "resize":
             check("resize: 小さくすると 1 行の文言を出し、戻すと画面を描き直す",

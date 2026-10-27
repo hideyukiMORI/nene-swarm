@@ -30,7 +30,7 @@ struct ScreenRendererTests {
     ) -> Grid {
         let state = ScreenState(
             session: session, display: display, difficulty: .normal, seed: 9, highScores: .empty, persona: .sniper,
-            remark: remark)
+            remark: remark, effects: Effects())
         return ScreenRenderer.render(state, size: size)
     }
 
@@ -59,9 +59,19 @@ struct ScreenRendererTests {
         #expect(text.contains("GAME 001"))
     }
 
-    @Test func aStageOpensWithItsBanner() {
-        let text = Self.text(Self.render(Self.session(ticks: 40)))
-        #expect(text.contains("STAGE 1"))
+    /// ステージの始まりは、大きな文字の帯を塗って出す（点は空白のセル・FR-02f）。
+    @Test func aStageOpensWithABigBanner() {
+        let grid = Self.render(Self.session(ticks: 40))
+        let layout = ScreenLayout.compact
+        let pixels = BigFont.pixels("STAGE 1")
+        let left = layout.fieldColumn + (ScreenLayout.fieldWidth - BigFont.span("STAGE 1")) / 2
+        for (row, cells) in pixels.enumerated() {
+            for (offset, lit) in cells.enumerated() {
+                let cell = grid[left + offset, layout.fieldRow + 9 + row]
+                #expect((cell.background == Theme.standard.spark) == lit)
+                #expect(!lit || cell.character == " ")
+            }
+        }
     }
 
     /// 自機・敵・弾・トーチカのセルは空白で、背景だけが色になる（FR-07）。盤面の中で地の色でないセルに文字は無い。

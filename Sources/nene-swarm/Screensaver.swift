@@ -20,6 +20,7 @@ struct Screensaver {
     private var persona: Persona
     private var pilot: Pilot
     private var banter = Banter()
+    private var effects = Effects()
     private var banterGenerator: SplitMix64
     private var session: Session
     private var display: DisplayOptions
@@ -98,6 +99,7 @@ struct Screensaver {
         }
         let hearing = Hearing(events: step.events, shipsInPlay: ships, newRecord: newRecord)
         banter.listen(hearing, persona: persona, using: &banterGenerator)
+        effects.absorb(step.events)
     }
 
     /// 出来事を 1 つ反映する。ハイスコアの 1 位になったら true。
@@ -124,7 +126,7 @@ struct Screensaver {
     private mutating func draw() {
         let state = ScreenState(
             session: session, display: display, difficulty: difficulty, seed: seed, highScores: highScores,
-            persona: persona, remark: banter.latest)
+            persona: persona, remark: banter.latest, effects: effects)
         let grid = ScreenRenderer.render(state, size: Console.size())
         Console.write(FrameEncoder.encode(grid, previous: previous, colors: display.traits.colors))
         previous = grid
