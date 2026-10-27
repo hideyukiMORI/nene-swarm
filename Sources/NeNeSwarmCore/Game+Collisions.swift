@@ -16,15 +16,21 @@ extension Game {
         }
     }
 
-    /// 捕獲ビームの箱（親玉の下端から盤面の下まで、3 セル幅）。ビームを出していなければ nil。
+    /// 捕獲ビームの箱（親玉の下端から、出し始めてからの刻みに応じて下へ伸びる。3 セル幅）。ビームを出していなければ nil。
+    ///
+    /// 一度に盤面の下まで出すと、真下にいる自機は逃げようが無い。伸びる間に逃げられる（ADR 0008）。
     public func beam(of enemy: Enemy) -> Box? {
-        guard case .beaming = enemy.motion, enemy.box.bottom < Field.height else {
+        guard case .beaming(let ticksLeft) = enemy.motion, enemy.box.bottom < Field.height else {
             return nil
         }
+        let reach = min(Field.height - enemy.box.bottom, (Game.beamTicks - ticksLeft + 1) * Game.beamGrowth)
         return Box(
             origin: Point(x: enemy.box.centerX - Game.beamHalfWidth, y: enemy.box.bottom),
-            width: 2 * Game.beamHalfWidth, height: Field.height - enemy.box.bottom)
+            width: 2 * Game.beamHalfWidth, height: reach)
     }
+
+    /// ビームが 1 刻みに伸びる量。
+    static let beamGrowth = 4
 
     /// 捕獲ビームの幅の半分。
     static let beamHalfWidth = 3 * Field.cellUnits / 2

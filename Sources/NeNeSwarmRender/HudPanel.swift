@@ -26,7 +26,7 @@ struct HudPanel {
             pair("STAGE", Wording.digits(game?.stage.number ?? 1, 2)),
             pair("SHIPS", ships(game)),
             pair("LEVEL", Wording.difficulty(state.difficulty)),
-            pair("PILOT", state.pilot),
+            pair("PILOT", state.persona.name),
             pair("GAME", Wording.digits(state.gameNumber, 3)),
         ]
     }

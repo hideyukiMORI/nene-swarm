@@ -4,8 +4,10 @@ extension Game {
     static let loopOutTicks = 8
     /// 戻るときの 1 刻みの最大の量（隊列の 1 歩より大きい）。
     static let returnSpeed = 10
-    /// 急降下の横の最高速度。
-    static let diveSwing = 4
+    /// 急降下の横の最高速度（自機より遅い。自機が横へ逃げられる・ADR 0008）。
+    static let diveSwing = 3
+    /// これより下では向きを変えず、それまでの向きのまま突っ込む（トーチカの上端の 2 段上）。
+    static let commitAltitude = Field.units(Shield.topRow - 2)
     /// 捕獲の急降下が止まる高さ。
     static let captureAltitude = Field.units(9)
     /// 捕獲ビームを出す刻みの数。
@@ -90,14 +92,15 @@ extension Game {
         return .either
     }
 
-    /// 急降下を 1 刻み進める。抜け出したあとは自機の方へ曲がりながら降りる。
+    /// 急降下を 1 刻み進める。抜け出したあとは自機の方へ曲がりながら降り、`commitAltitude` より下では横の向きを変えない。
     private func steered(_ enemy: Enemy, dive: Dive, tuning: Tuning) -> Enemy {
         var next = enemy
         let elapsed = dive.elapsed + 1
         var velocity = dive.velocity
         if elapsed > Game.loopOutTicks {
             let target = targetX
-            let turn = target > enemy.box.centerX ? 1 : (target < enemy.box.centerX ? -1 : 0)
+            let homing = enemy.position.y < Game.commitAltitude
+            let turn = !homing ? 0 : (target > enemy.box.centerX ? 1 : (target < enemy.box.centerX ? -1 : 0))
             let ceiling = Game.ceiling(of: dive.purpose, tuning: tuning)
             velocity = Velocity(
                 dx: min(Game.diveSwing, max(-Game.diveSwing, velocity.dx + turn)),

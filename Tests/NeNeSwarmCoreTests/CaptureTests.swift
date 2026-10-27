@@ -133,4 +133,16 @@ import Testing
         #expect(game.playerShots.count == 2)
         #expect(!game.canFire)
     }
+
+    @Test func theBeamGrowsDownFromTheFlagshipBeforeItReachesTheShipRow() throws {
+        var game = Scenario.empty()
+        let flagship = Scenario.enemy(.flagship, at: beamer, motion: .beaming(ticksLeft: Game.beamTicks), id: 7)
+        game.enemies = [flagship]
+        let first = try #require(game.beam(of: game.enemies[0]))
+        #expect(first.origin.y == flagship.box.bottom)
+        #expect(first.height == Game.beamGrowth)
+        game.enemies[0].motion = .beaming(ticksLeft: 1)
+        let last = try #require(game.beam(of: game.enemies[0]))
+        #expect(last.bottom == Field.height)
+    }
 }
