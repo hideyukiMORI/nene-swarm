@@ -165,5 +165,6 @@ Waivers: none | WVR-NNNN
 現在のタスクは [docs/todo/current.md](docs/todo/current.md)。GitHub Issue が正で、そこは要約。
 
 - 動くもの: `make check`（smoke を含む）・`nene-swarm`（キャスト 4 名のパイロットが TITLE → PLAY → GAME OVER を 80 × 24 で遊び続ける・NORMAL で平均約 3 分 20 秒・COMMS 欄にセリフ・12 テーマの専用の色・星空と爆発と帯の演出・ハイスコアのファイル・100 × 26 以上の 2 段目の配置・ADR 0005〜0011）
-- 動かないもの: Release の公開（施主の確認待ち）・README の実機の画面写真（Phase 3-3・撮影の権限待ち）。`make release` で配布物は作れる（ADR 0012）
+- 公開: v0.1.0（ベータ・2026-10-27・Q14）。`install.sh` の 1 行で入る
+- 動かないもの: README の実機の画面写真と Windows Terminal での確認（Phase 3-3）
 - 施主の決定は [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) にそろっている。決定を覆したくなった点や、要件に無い機能を足したくなった点は、自分で決めずに施主に聞く

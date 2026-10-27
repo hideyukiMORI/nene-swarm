@@ -6,6 +6,7 @@ A terminal screensaver in which a hand-written AI pilot flies against a marching
 a bonus saucer, bonus stages and a top-five high score. Title, play, game over, and around again.
 Four pilots take turns, and each one grumbles, jokes and gloats in its own voice the whole time. You don't have to do anything.
 
+[![release](https://img.shields.io/github/v/release/hideyukiMORI/nene-swarm)](https://github.com/hideyukiMORI/nene-swarm/releases/latest)
 ![platform](https://img.shields.io/badge/platform-Linux%20x86__64%20%2F%20WSL2-555)
 ![license](https://img.shields.io/badge/license-MIT-555)
 
@@ -14,13 +15,11 @@ Four pilots take turns, and each one grumbles, jokes and gloats in its own voice
 It is a sibling of [NeNe Gambit](https://github.com/hideyukiMORI/nene-gambit) (chess), [NeNe Reversi](https://github.com/hideyukiMORI/nene-reversi),
 [NeNe Igo](https://github.com/hideyukiMORI/nene-igo) (Go) and [NeNe Poker](https://github.com/hideyukiMORI/nene-poker).
 
-🚧 **Not released yet.** Everything below works from source today; the first release (with screenshots from Windows Terminal) is being prepared.
+🧪 **Beta.** [v0.1.0](https://github.com/hideyukiMORI/nene-swarm/releases/tag/v0.1.0) is out as a beta: it has not yet been checked by eye in Windows Terminal, and screenshots will follow.
 
 ---
 
 ## Install
-
-Once the first release is out:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/hideyukiMORI/nene-swarm/main/install.sh | bash
