@@ -16,7 +16,7 @@
 | Phase 3-4 パイロットの AI とキャスト 4 名 | ✅ 2026-10-27（Issue #7・ADR 0008・NORMAL 平均 約 3 分 20 秒） |
 | Phase 3-5a セリフと COMMS 欄 | ✅ 2026-10-27（Issue #9・ADR 0009） |
 | Phase 3-5b 専用の色・派手な演出 | ✅ 2026-10-27（Issue #11・ADR 0010） |
-| Phase 3-5c ハイスコアのファイル・大きな端末の配置 | 🔲 次 |
+| Phase 3-5c ハイスコアのファイル・大きな端末の配置 | ✅ 2026-10-27（Issue #13・ADR 0011） |
 | Phase 4 公開 | 🔲 別 Issue |
 
 ## 動くもの
@@ -28,11 +28,10 @@
 ## 動かないもの
 
 - `main` への直接 push・force push が拒まれることは試していない（ruleset の読み戻しと PR の `BLOCKED` で代えた・gate-proofs 第 4 節）
-- ハイスコアのファイル・大きな端末の配置（Phase 3-5c）
+- 公開の経路（Phase 4）
 - Windows Terminal での見え方の確認（Phase 3-3。撮影の権限待ち）
 
 ## 次の 1 手
 
-Phase 3-5c: ハイスコアのファイル（`$XDG_STATE_HOME/nene-swarm/`、無ければ `~/.local/state/nene-swarm/`・読めなければ起動中だけ）と、
-大きな端末の配置（FR-17 の 2 段目・盤面の下に COMMS の直近 2 行）。
-Phase 3-3 は、施主が撮影の権限を足すか、Windows Terminal で `nene-swarm` を起動して画面を見てもらってから。
+Phase 4（公開の準備）: Igo から版の入力（`Version.swift`・`--version`）・`make release`・成果物の検査・`install.sh`・`install.ps1` を移植し、
+README（英語が正・`README.ja.md`）を書く。README の先頭の実機の画面写真は Phase 3-3 と一緒に。**Release の公開は施主の確認を取ってから**。

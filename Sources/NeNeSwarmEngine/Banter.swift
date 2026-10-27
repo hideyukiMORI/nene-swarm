@@ -14,8 +14,11 @@ public struct Banter: Sendable, Hashable {
     static let streakWindow = 45
     static let streakCount = 3
 
+    /// 直近の発言（古い順・最大 2 つ）。
+    public private(set) var lines: [Remark] = []
+
     /// いちばん新しい発言（まだ無ければ nil）。
-    public private(set) var latest: Remark?
+    public var latest: Remark? { lines.last }
     private var recent: [String: [String]] = [:]
     private var clock = 0
     private var lastSpoke = -quietTicks
@@ -94,6 +97,6 @@ public struct Banter: Sendable, Hashable {
         }
         recent[persona.name] = Array((said + [text]).suffix(8))
         lastSpoke = clock
-        latest = Remark(persona: persona, cue: cue, text: text)
+        lines = Array((lines + [Remark(persona: persona, cue: cue, text: text)]).suffix(2))
     }
 }

@@ -41,7 +41,7 @@ struct ThemeContrastTests {
                 highScores: HighScoreTable(entries: [
                     HighScore(score: 1_234, pilot: "LUCKY.INI", stage: 3, difficulty: .easy)
                 ]),
-                persona: .lucky, remark: remark, effects: effects)
+                persona: .lucky, remarks: [remark], effects: effects, storage: .memoryOnly)
             let grid = ScreenRenderer.render(state, size: ScreenRendererTests.size)
             for row in 0..<grid.size.rows {
                 for column in 0..<grid.size.columns {

@@ -2,6 +2,8 @@
 public enum ScreenRenderer {
     /// 画面がちょうど入る大きさ（これより小さければ 1 行の文言だけ）。
     public static let minimumSize = ScreenLayout.compact.size
+    /// 2 段目の配置がちょうど入る大きさ。
+    public static let largeSize = ScreenLayout.large.size
 
     /// 1 画面分の格子。
     public static func render(_ state: ScreenState, size: ScreenSize) -> Grid {
@@ -13,7 +15,8 @@ public enum ScreenRenderer {
                 colors: CellColors(foreground: theme.text, background: theme.ground))
             return grid
         }
-        draw(state, layout: .compact, into: &grid)
+        let fitsLarge = size.columns >= largeSize.columns && size.rows >= largeSize.rows
+        draw(state, layout: fitsLarge ? .large : .compact, into: &grid)
         return grid
     }
 
@@ -35,10 +38,14 @@ public enum ScreenRenderer {
         case .gameOver(let summary, _):
             cards.gameOver(summary, persona: state.persona, highScores: state.highScores, into: &grid)
         }
-        let hud = HudPanel(state: state, panel: Panel(width: layout.hudWidth, glyphs: glyphs), theme: theme)
+        let hud = HudPanel(
+            state: state, panel: Panel(width: layout.hudWidth, glyphs: glyphs), theme: theme, layout: layout)
         let rows = layout.frameBottom - layout.frameTop + 1
         for (offset, line) in hud.lines(rows: rows).enumerated() {
             grid.write(line, column: layout.hudColumn, row: layout.frameTop + offset, background: theme.ground)
+        }
+        for (offset, line) in ScreenChrome.comms(state, glyphs: glyphs).prefix(layout.commsRows).enumerated() {
+            grid.write(line, column: 0, row: layout.commsRow + offset, background: theme.ground)
         }
         band(row: layout.footerRow, theme: theme, into: &grid)
         grid.write(ScreenChrome.footer(state), column: 0, row: layout.footerRow, background: theme.panel)

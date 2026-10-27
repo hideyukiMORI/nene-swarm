@@ -30,7 +30,7 @@ struct ScreenRendererTests {
     ) -> Grid {
         let state = ScreenState(
             session: session, display: display, difficulty: .normal, seed: 9, highScores: .empty, persona: .sniper,
-            remark: remark, effects: Effects())
+            remarks: remark.map { [$0] } ?? [], effects: Effects(), storage: .file)
         return ScreenRenderer.render(state, size: size)
     }
 
@@ -129,5 +129,27 @@ struct ScreenRendererTests {
         let lines = Wording.wrap("Twenty-two to one. I like those odds. I like all odds.", width: 21)
         #expect(lines == ["Twenty-two to one. I", "like those odds. I", "like all odds."])
         #expect(Wording.wrap("abcdefghijklmnopqrstuvwxyz", width: 10) == ["abcdefghij"])
+    }
+
+    /// 100 × 26 以上では 2 段目の配置: 広い HUD にハイスコアの表、盤面の下に COMMS の直近 2 行（FR-17）。
+    @Test func aLargeTerminalGetsTheWideHudAndTwoCommsLines() {
+        #expect(ScreenRenderer.largeSize == ScreenSize(columns: 100, rows: 26))
+        let older = Remark(persona: .nervous, cue: .stageStart, text: "They're moving. Why are they moving?")
+        let newer = Remark(persona: .nervous, cue: .hit, text: "I knew it. I KNEW it.")
+        let state = ScreenState(
+            session: Self.session(ticks: 200), display: Self.boxed, difficulty: .easy, seed: 9,
+            highScores: HighScoreTable(entries: [
+                HighScore(score: 4_321, pilot: "NERVOUS.TMP", stage: 4, difficulty: .easy)
+            ]),
+            persona: .nervous, remarks: [older, newer], effects: Effects(), storage: .file)
+        let large = Self.text(ScreenRenderer.render(state, size: ScreenRenderer.largeSize))
+        #expect(large.contains("HIGH SCORES"))
+        #expect(large.contains("0004321  NERVOUS.TMP"))
+        #expect(large.contains("They're moving. Why are they moving?"))
+        #expect(large.contains("I knew it. I KNEW it."))
+        #expect(large.contains("[q] QUIT"))
+        let compact = Self.text(ScreenRenderer.render(state, size: ScreenSize(columns: 99, rows: 26)))
+        #expect(compact.contains("COMMS"))
+        #expect(!compact.contains("They're moving."))
     }
 }

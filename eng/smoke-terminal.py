@@ -11,6 +11,7 @@
 - `q`・Ctrl+C・SIGTERM のどれで終わっても exit 0 で、出力の最後が端末を戻す列で、termios の lflag が起動前と同じ
 - SIGSEGV（異常終了）でも端末を戻してから、そのシグナルで死ぬ
 - 端末を小さくすると落ちずに 1 行の文言を出し、戻すと画面を描き直す
+- 保存したハイスコアの表を TITLE に出し、読めないファイルでは起動中だけの記録で続ける（置き場は一時ディレクトリ）
 - 間違った起動オプションは exit 2、端末の外から起動すると exit 1（どちらも理由を 1 行）
 
 標準ライブラリだけで書く。Windows Terminal での見え方の代わりにはならない（QLT-013）。
@@ -29,13 +30,15 @@ import signal
 import struct
 import subprocess
 import sys
+import tempfile
 import termios
 import time
 
 ENTER, LEAVE, SHOW, GAME = "\x1b[?1049h", "\x1b[?1049l", "\x1b[?25h", "GAME 001"
 
 
-def run(binary: str, keys: list[bytes], send: int | None = None, shrink: bool = False) -> tuple[str, int, bool]:
+def run(binary: str, keys: list[bytes], send: int | None = None, shrink: bool = False,
+        state: str = "", title: float = 0.5) -> tuple[str, int, bool]:
     master, slave = pty.openpty()
     fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack("HHHH", 24, 80, 0, 0))
     before = termios.tcgetattr(slave)
@@ -45,7 +48,9 @@ def run(binary: str, keys: list[bytes], send: int | None = None, shrink: bool = 
         fcntl.ioctl(slave, termios.TIOCSCTTY, 0)
         for fd in (0, 1, 2):
             os.dup2(slave, fd)
-        os.execve(binary, [binary, "--seed", "1", "--title-pause", "0.5"], dict(os.environ, COLORTERM="truecolor"))
+        # ハイスコアの置き場は一時ディレクトリにする（利用者の ~/.local/state に書かない）
+        env = dict(os.environ, COLORTERM="truecolor", XDG_STATE_HOME=state or tempfile.mkdtemp(prefix="swarm-smoke-"))
+        os.execve(binary, [binary, "--seed", "1", "--title-pause", str(title)], env)
     chunks: list[bytes] = []
 
     def pump(seconds: float) -> None:
@@ -154,6 +159,20 @@ def main() -> int:
         if label == "resize":
             check("resize: 小さくすると 1 行の文言を出し、戻すと画面を描き直す",
                   "TERMINAL TOO SMALL" in text and text.rfind(GAME) > text.find("TERMINAL TOO SMALL"), failures)
+    with tempfile.TemporaryDirectory(prefix="swarm-smoke-") as state:
+        os.makedirs(os.path.join(state, "nene-swarm"))
+        with open(os.path.join(state, "nene-swarm", "highscores.txt"), "w") as saved:
+            saved.write("nene-swarm-highscores 1\n54321\t6\thard\tSNIPER.ISO\n")
+        text, _, _ = run(binary, [b"q"], state=state, title=5)
+        last = "\n".join(screen(text[: text.rfind(LEAVE)]))
+        check("保存したハイスコアの表を読んで TITLE に出す", "0054321  SNIPER.ISO" in last and "MEMORY ONLY" not in last, failures)
+    with tempfile.TemporaryDirectory(prefix="swarm-smoke-") as state:
+        os.makedirs(os.path.join(state, "nene-swarm"))
+        with open(os.path.join(state, "nene-swarm", "highscores.txt"), "w") as saved:
+            saved.write("not a score file\n")
+        text, _, _ = run(binary, [b"q"], state=state, title=5)
+        last = "\n".join(screen(text[: text.rfind(LEAVE)]))
+        check("読めないハイスコアのファイルでは起動中だけの記録で続け、TITLE にそう出す", "SCORES KEPT IN MEMORY ONLY" in last, failures)
     bad = subprocess.run([binary, "--tick-rate", "500"], capture_output=True, text=True, stdin=subprocess.DEVNULL)
     check("間違った起動オプションは exit 2 で理由を 1 行", bad.returncode == 2 and bad.stderr.count("\n") == 1, failures)
     off = subprocess.run([binary], capture_output=True, text=True, stdin=subprocess.DEVNULL)

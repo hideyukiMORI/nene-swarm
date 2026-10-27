@@ -5,6 +5,7 @@ struct HudPanel {
     let state: ScreenState
     let panel: Panel
     let theme: Theme
+    let layout: ScreenLayout
 
     /// 上から順の行（`rows` 行に満たなければ空の行で埋め、下端の枠で閉じる）。
     func lines(rows: Int) -> [[Segment]] {
@@ -12,8 +13,13 @@ struct HudPanel {
         lines += status().map { panel.row($0, frame: theme.frame) }
         lines.append(panel.header("SWARM", title: theme.accent, frame: theme.frame, first: false))
         lines += intel().map { panel.row($0, frame: theme.frame) }
-        lines.append(panel.header("COMMS", title: theme.accent, frame: theme.frame, first: false))
-        lines += comms(rows: rows - lines.count - 1).map { panel.row($0, frame: theme.frame) }
+        if layout.hasCommsBelow {
+            lines.append(panel.header("HIGH SCORES", title: theme.accent, frame: theme.frame, first: false))
+            lines += scores().map { panel.row($0, frame: theme.frame) }
+        } else {
+            lines.append(panel.header("COMMS", title: theme.accent, frame: theme.frame, first: false))
+            lines += comms(rows: rows - lines.count - 1).map { panel.row($0, frame: theme.frame) }
+        }
         while lines.count < rows - 1 {
             lines.append(panel.row([], frame: theme.frame))
         }
@@ -48,13 +54,29 @@ struct HudPanel {
 
     /// COMMS: 話し手の名前と顔、その下に折り返したセリフ（入りきらない分は切る）。
     private func comms(rows: Int) -> [[Segment]] {
-        guard let remark = state.remark, rows > 0 else {
+        guard let remark = state.remarks.last, rows > 0 else {
             return []
         }
         let width = panel.width - 4
         let head = [Segment(remark.persona.name + " ", theme.accentAlt), Segment(remark.persona.face, theme.accent)]
         let body = Wording.wrap(remark.text, width: width).map { [Segment($0, theme.text)] }
         return Array(([head] + body).prefix(rows))
+    }
+
+    /// 広い HUD のハイスコアの表（上位 5 件）。
+    private func scores() -> [[Segment]] {
+        (0..<HighScoreTable.capacity).map { rank in
+            guard rank < state.highScores.entries.count else {
+                return [Segment(String(rank + 1) + "  -------", theme.dim)]
+            }
+            let entry = state.highScores.entries[rank]
+            return [
+                Segment(String(rank + 1) + "  ", theme.dim), Segment(Wording.digits(entry.score, 7) + "  ", theme.text),
+                Segment(entry.pilot, theme.accentAlt),
+                Segment(
+                    "  ST" + Wording.digits(entry.stage, 2) + " " + Wording.difficulty(entry.difficulty), theme.dim),
+            ]
+        }
     }
 
     private var playing: Game? {

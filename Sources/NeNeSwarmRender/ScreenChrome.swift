@@ -23,4 +23,16 @@ enum ScreenChrome {
             Segment(Wording.difficulty(state.difficulty), theme.text),
         ]
     }
+
+    /// 盤面の下の COMMS（古い方は控えめな色、新しい方は話し手の色）。2 段目の配置だけ。
+    static func comms(_ state: ScreenState, glyphs: FrameGlyphs) -> [[Segment]] {
+        let theme = state.display.theme
+        return state.remarks.enumerated().map { index, remark in
+            let lead = " " + glyphs.marker + " " + remark.persona.name + " " + remark.persona.face + "  "
+            guard index == state.remarks.count - 1 else {
+                return [Segment(lead + remark.text, theme.dim)]
+            }
+            return [Segment(lead, theme.accentAlt), Segment(remark.text, theme.text)]
+        }
+    }
 }
