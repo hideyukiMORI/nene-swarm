@@ -25,9 +25,12 @@ struct ScreenRendererTests {
         return session
     }
 
-    static func render(_ session: Session, display: DisplayOptions = boxed, size: ScreenSize = size) -> Grid {
+    static func render(
+        _ session: Session, display: DisplayOptions = boxed, size: ScreenSize = size, remark: Remark? = nil
+    ) -> Grid {
         let state = ScreenState(
-            session: session, display: display, difficulty: .normal, seed: 9, highScores: .empty, persona: .sniper)
+            session: session, display: display, difficulty: .normal, seed: 9, highScores: .empty, persona: .sniper,
+            remark: remark)
         return ScreenRenderer.render(state, size: size)
     }
 
@@ -100,5 +103,21 @@ struct ScreenRendererTests {
         #expect(Set(Theme.catalog.map(\.name)).count == 12)
         #expect(Theme.named("phosphor")?.name == "PHOSPHOR")
         #expect(Theme.catalog.last?.next == Theme.standard)
+    }
+
+    /// COMMS 欄に話し手の名前と顔と、折り返したセリフが出る（FR-15）。
+    @Test func commsShowsTheSpeakerAndTheWrappedLine() {
+        let remark = Remark(persona: .lucky, cue: .hit, text: "Lost a chip. I have more chips. Do I have more chips?")
+        let text = Self.text(Self.render(Self.session(ticks: 200), remark: remark))
+        #expect(text.contains("COMMS"))
+        #expect(text.contains("LUCKY.INI (^o^)"))
+        #expect(text.contains("Lost a chip. I have"))
+        #expect(text.contains("more chips?"))
+    }
+
+    @Test func wrappingKeepsWordsWithinTheWidth() {
+        let lines = Wording.wrap("Twenty-two to one. I like those odds. I like all odds.", width: 21)
+        #expect(lines == ["Twenty-two to one. I", "like those odds. I", "like all odds."])
+        #expect(Wording.wrap("abcdefghijklmnopqrstuvwxyz", width: 10) == ["abcdefghij"])
     }
 }

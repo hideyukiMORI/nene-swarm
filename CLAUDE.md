@@ -164,6 +164,6 @@ Waivers: none | WVR-NNNN
 
 現在のタスクは [docs/todo/current.md](docs/todo/current.md)。GitHub Issue が正で、そこは要約。
 
-- 動くもの: `make check`（smoke を含む）・`nene-swarm`（キャスト 4 名のパイロットが TITLE → PLAY → GAME OVER を 80 × 24 で遊び続ける・NORMAL で平均約 3 分 20 秒・ADR 0005〜0008）
-- 動かないもの: セリフ・専用の色・派手な演出・ハイスコアのファイル・大きな端末の配置（Phase 3-5）。実機の画面写真（Phase 3-3）は撮影の権限待ち
+- 動くもの: `make check`（smoke を含む）・`nene-swarm`（キャスト 4 名のパイロットが TITLE → PLAY → GAME OVER を 80 × 24 で遊び続ける・NORMAL で平均約 3 分 20 秒・COMMS 欄にセリフ・ADR 0005〜0009）
+- 動かないもの: 専用の色・派手な演出（Phase 3-5b）・ハイスコアのファイル・大きな端末の配置（Phase 3-5c）。実機の画面写真（Phase 3-3）は撮影の権限待ち
 - 施主の決定は [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) にそろっている。決定を覆したくなった点や、要件に無い機能を足したくなった点は、自分で決めずに施主に聞く

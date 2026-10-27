@@ -22,6 +22,13 @@ public struct Persona: Sendable, Hashable {
     let chasesSaucer: Bool
     /// トーチカの下に隠れたがるか。
     let hugsShields: Bool
+    /// 台本（1 人 50 本・FR-15）。
+    let script: [ScriptLine]
+
+    /// きっかけのセリフ。
+    func lines(for cue: Cue) -> [String] {
+        script.filter { $0.cue == cue }.map(\.text)
+    }
 
     /// 4 名（毎ゲーム 1 名が乗る）。
     public static let roster: [Persona] = [blaster, nervous, lucky, sniper]
@@ -29,17 +36,17 @@ public struct Persona: Sendable, Hashable {
     /// 撃ちまくり。慎重さは最低で、2 機並びが欲しくてビームに自分から入る。
     public static let blaster = Persona(
         name: "BLASTER.BIN", face: "(>_<)", foresight: 10, blindness: 40, jitter: 10, aimTolerance: 16,
-        seeksCapture: true, chasesSaucer: false, hugsShields: false)
+        seeksCapture: true, chasesSaucer: false, hugsShields: false, script: blasterScript)
     /// 心配性。遠くの弾まで見て逃げ、トーチカの下に隠れる。撃つのは控えめ。
     public static let nervous = Persona(
         name: "NERVOUS.TMP", face: "(;_;)", foresight: 28, blindness: 25, jitter: 6, aimTolerance: 6,
-        seeksCapture: false, chasesSaucer: false, hugsShields: true)
+        seeksCapture: false, chasesSaucer: false, hugsShields: true, script: nervousScript)
     /// 博打打ち。迷いが多く、UFO を追いかけ、ビームにもときどき入る。
     public static let lucky = Persona(
         name: "LUCKY.INI", face: "(^o^)", foresight: 16, blindness: 70, jitter: 14, aimTolerance: 12,
-        seeksCapture: true, chasesSaucer: true, hugsShields: false)
+        seeksCapture: true, chasesSaucer: true, hugsShields: false, script: luckyScript)
     /// 狙撃手。先を読んで撃ち、狙いが合うまで撃たない。ビームは避ける。
     public static let sniper = Persona(
         name: "SNIPER.ISO", face: "(-_-)", foresight: 20, blindness: 30, jitter: 2, aimTolerance: 4,
-        seeksCapture: false, chasesSaucer: true, hugsShields: false)
+        seeksCapture: false, chasesSaucer: true, hugsShields: false, script: sniperScript)
 }
