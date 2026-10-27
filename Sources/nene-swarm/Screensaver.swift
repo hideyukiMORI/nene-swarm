@@ -19,6 +19,8 @@ struct Screensaver {
     private var pilotGenerator: SplitMix64
     private var persona: Persona
     private var pilot: Pilot
+    private var banter = Banter()
+    private var banterGenerator: SplitMix64
     private var session: Session
     private var display: DisplayOptions
     private var difficulty: Difficulty
@@ -33,6 +35,7 @@ struct Screensaver {
         generator = SplitMix64(seed: seed)
         pilotGenerator = SplitMix64(seed: seed ^ 0x5357_4152_4D21)
         session = Session(durations: options.durations)
+        banterGenerator = SplitMix64(seed: seed ^ 0x4241_4E54_4552)
         persona = Persona.roster.randomElement(using: &pilotGenerator) ?? Persona.blaster
         pilot = Pilot(persona: persona)
     }
@@ -77,40 +80,51 @@ struct Screensaver {
         }
     }
 
-    /// 1 刻み進める。PLAY の間だけパイロットが入力を決める。
+    /// 1 刻み進める。PLAY の間だけパイロットが入力を決める。出来事はハイスコアとセリフに渡す。
     private mutating func tick() {
         var input = PilotInput.idle
         if case .play(let game) = session.scene {
             input = pilot.input(for: game, difficulty: difficulty, using: &pilotGenerator)
         }
         let step = session.step(input, difficulty: difficulty, using: &generator)
+        var newRecord = false
         for event in step.events {
-            record(event)
+            newRecord = record(event) || newRecord
         }
         session = step.session
+        var ships: Int?
+        if case .play(let game) = session.scene {
+            ships = game.shipsInPlay
+        }
+        let hearing = Hearing(events: step.events, shipsInPlay: ships, newRecord: newRecord)
+        banter.listen(hearing, persona: persona, using: &banterGenerator)
     }
 
-    private mutating func record(_ event: SessionEvent) {
+    /// 出来事を 1 つ反映する。ハイスコアの 1 位になったら true。
+    private mutating func record(_ event: SessionEvent) -> Bool {
         switch event {
         case .gameStarted:
             pilot = Pilot(persona: persona)
         case .gameEnded(let summary):
             let entry = HighScore(
                 score: summary.score, pilot: persona.name, stage: summary.stage.number, difficulty: summary.difficulty)
-            highScores = highScores.inserting(entry).table
+            let insertion = highScores.inserting(entry)
+            highScores = insertion.table
+            return summary.score > 0 && insertion.rank == .ranked(1)
         case .titleShown:
-            // 次のゲームのパイロットは TITLE に入ったときに決め、TITLE に出す
+            // 次のゲームのパイロットは TITLE に入ったときに決め、TITLE に出す（セリフは次のパイロットが言う）
             persona = Persona.roster.randomElement(using: &pilotGenerator) ?? Persona.blaster
         case .game:
             break
         }
+        return false
     }
 
     /// いまの状態を描き、前のフレームとの差分だけを 1 回で書く。
     private mutating func draw() {
         let state = ScreenState(
             session: session, display: display, difficulty: difficulty, seed: seed, highScores: highScores,
-            persona: persona)
+            persona: persona, remark: banter.latest)
         let grid = ScreenRenderer.render(state, size: Console.size())
         Console.write(FrameEncoder.encode(grid, previous: previous, colors: display.traits.colors))
         previous = grid

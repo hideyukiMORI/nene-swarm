@@ -11,7 +11,7 @@ It is a sibling of [NeNe Gambit](https://github.com/hideyukiMORI/nene-gambit) (c
 BLASTER.BIN, NERVOUS.TMP, LUCKY.INI and SNIPER.ISO dodge by looking ahead with the game's own step function, aim with lead,
 and some fly into the capture beam on purpose to win a dual ship. A NORMAL game lasts a little over three minutes on average.
 The swarm marches and dives, shots never tunnel, shields chip, the capture beam and the rescue work, and 600 games played to the end keep
-every invariant (determinism, bounds, score and ship counts, every game ending). Their lines, the theme colors and the flashy effects come next.
+every invariant (determinism, bounds, score and ship counts, every game ending). Each pilot has fifty lines of its own in the COMMS panel. The theme colors and the flashy effects come next.
 
 ## Development
 

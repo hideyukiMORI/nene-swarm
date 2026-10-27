@@ -12,6 +12,8 @@ struct HudPanel {
         lines += status().map { panel.row($0, frame: theme.frame) }
         lines.append(panel.header("SWARM", title: theme.accent, frame: theme.frame, first: false))
         lines += intel().map { panel.row($0, frame: theme.frame) }
+        lines.append(panel.header("COMMS", title: theme.accent, frame: theme.frame, first: false))
+        lines += comms(rows: rows - lines.count - 1).map { panel.row($0, frame: theme.frame) }
         while lines.count < rows - 1 {
             lines.append(panel.row([], frame: theme.frame))
         }
@@ -42,6 +44,17 @@ struct HudPanel {
             pair("WING", wing(game)),
             pair("CAPTIVE", game.captiveHull == nil ? "NONE" : "HELD"),
         ]
+    }
+
+    /// COMMS: 話し手の名前と顔、その下に折り返したセリフ（入りきらない分は切る）。
+    private func comms(rows: Int) -> [[Segment]] {
+        guard let remark = state.remark, rows > 0 else {
+            return []
+        }
+        let width = panel.width - 4
+        let head = [Segment(remark.persona.name + " ", theme.accentAlt), Segment(remark.persona.face, theme.accent)]
+        let body = Wording.wrap(remark.text, width: width).map { [Segment($0, theme.text)] }
+        return Array(([head] + body).prefix(rows))
     }
 
     private var playing: Game? {

@@ -24,3 +24,4 @@ ADR は「なぜそう決めたか」「何を却下したか」を書く。
 | [0006](0006-invariant-tests-and-measured-game-length.md) | 公表値の代わりに不変条件のテストでゲートを組み、release 構成で 600 ゲームを回す | 受理 |
 | [0007](0007-terminal-loop-and-first-screen.md) | 端末と描画の土台を Igo から移し、30 刻み／秒の 1 本のループで 80 × 24 に描く | 受理 |
 | [0008](0008-pilots-cast-and-game-length.md) | パイロットは Core の 1 刻み関数で先を読んで避け、キャスト 4 名の性格で長さと遊び方を散らす | 受理 |
+| [0009](0009-pilot-lines-and-comms.md) | パイロットのセリフは 12 のきっかけ × 1 人 50 本で、HUD の COMMS 欄に折り返して出す | 受理 |

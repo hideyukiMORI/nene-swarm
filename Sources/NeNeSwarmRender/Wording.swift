@@ -60,6 +60,27 @@ enum Wording {
         "TERMINAL TOO SMALL: NEED \(need.columns)x\(need.rows)"
     }
 
+    /// 語の切れ目で `width` 桁以内の行に折り返す（1 語が長ければその語で切る）。
+    static func wrap(_ text: String, width: Int) -> [String] {
+        var lines: [String] = []
+        var current = ""
+        for word in text.split(separator: " ").map(String.init) {
+            let candidate = current.isEmpty ? word : current + " " + word
+            if candidate.count <= width {
+                current = candidate
+            } else {
+                if !current.isEmpty {
+                    lines.append(current)
+                }
+                current = String(word.prefix(width))
+            }
+        }
+        if !current.isEmpty {
+            lines.append(current)
+        }
+        return lines
+    }
+
     /// 0 で左を埋めた `width` 桁の数（収まらなければそのまま）。
     static func digits(_ value: Int, _ width: Int) -> String {
         let text = String(value)
