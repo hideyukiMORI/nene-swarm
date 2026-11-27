@@ -17,6 +17,9 @@ It is a sibling of [NeNe Gambit](https://github.com/hideyukiMORI/nene-gambit) (c
 
 🧪 **Beta.** [v0.1.0](https://github.com/hideyukiMORI/nene-swarm/releases/tag/v0.1.0) is out as a beta: it has not yet been checked by eye in Windows Terminal, and screenshots will follow.
 
+🌐 **Try it in your browser.** A TypeScript port runs on [hideyuki-mori.com](https://hideyuki-mori.com/): open `swarm` on the desktop. It is checked against this Swift build frame by frame, and with the same seed it plays the same game
+(180,006 screens compared, every one identical; the port and the check live in [hideyuki-mori-site/swarm](https://github.com/hideyukiMORI/hideyuki-mori-site/tree/main/swarm)).
+
 ---
 
 ## Install
