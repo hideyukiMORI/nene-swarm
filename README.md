@@ -12,10 +12,12 @@ Four pilots take turns, and each one grumbles, jokes and gloats in its own voice
 
 **English** · [日本語](README.ja.md)
 
+![LUCKY.INI starts stage 2 in the NEON theme](docs/images/play-neon.png)
+
 It is a sibling of [NeNe Gambit](https://github.com/hideyukiMORI/nene-gambit) (chess), [NeNe Reversi](https://github.com/hideyukiMORI/nene-reversi),
 [NeNe Igo](https://github.com/hideyukiMORI/nene-igo) (Go) and [NeNe Poker](https://github.com/hideyukiMORI/nene-poker).
 
-🧪 **Beta.** [v0.1.0](https://github.com/hideyukiMORI/nene-swarm/releases/tag/v0.1.0) is out as a beta: it has not yet been checked by eye in Windows Terminal, and screenshots will follow.
+🧪 **Beta.** [v0.1.0](https://github.com/hideyukiMORI/nene-swarm/releases/tag/v0.1.0) is out as a beta: the screenshots on this page are from Windows Terminal at 100×26.
 
 🌐 **Try it in your browser.** A TypeScript port runs on [hideyuki-mori.com](https://hideyuki-mori.com/): open `swarm` on the desktop. It is checked against this Swift build frame by frame, and with the same seed it plays the same game
 (180,006 screens compared, every one identical; the port and the check live in [hideyuki-mori-site/swarm](https://github.com/hideyukiMORI/hideyuki-mori-site/tree/main/swarm)).
@@ -82,6 +84,8 @@ A NORMAL game lasts **a little over three minutes** on average; the careful pilo
 - **High scores**: the top five (score, pilot, stage, difficulty) on the title screen and in the HUD, kept in `$XDG_STATE_HOME/nene-swarm/` (or `~/.local/state/nene-swarm/`).
   If the file can't be read or written, it carries on in memory and says so on the title screen
 
+![The title screen: high scores and the next pilot](docs/images/title-neon.png)
+
 ## The pilots
 
 At the title screen one of four is drawn at random for the next game. They dodge and aim differently, and they are rude differently.
@@ -108,6 +112,10 @@ The other 196 are yours to collect.
 Cycle with `t`: `NEON` (default), `PHOSPHOR`, `AMBER`, `SYNTHWAVE`, `GLACIER`, `BLOODMOON`, `VAPOR`, `MONO`, `TOXIC`, `GILDED`, `ABYSS`, and `PAPER` (the only light theme).
 In every theme the ship, each kind of enemy, both kinds of shots, the shields, the saucer and the explosions are at least 3:1 against the background,
 the ship never shares a color with an enemy, and every letter and digit on screen is at least 4.5:1. A test computes this from the cells it actually renders.
+
+| ![SYNTHWAVE](docs/images/synthwave.png) | ![PHOSPHOR](docs/images/phosphor.png) |
+| --- | --- |
+| ![BLOODMOON](docs/images/bloodmoon.png) | ![PAPER](docs/images/paper.png) |
 
 ---
 

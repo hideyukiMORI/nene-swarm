@@ -12,10 +12,12 @@
 
 [English](README.md) · **日本語**
 
+![NEON のテーマで、LUCKY.INI がステージ 2 を始めるところ](docs/images/play-neon.png)
+
 [NeNe Gambit](https://github.com/hideyukiMORI/nene-gambit)（チェス）・[NeNe Reversi](https://github.com/hideyukiMORI/nene-reversi)・
 [NeNe Igo](https://github.com/hideyukiMORI/nene-igo)（囲碁）・[NeNe Poker](https://github.com/hideyukiMORI/nene-poker) の兄弟です。
 
-🧪 **ベータ版です。** [v0.1.0](https://github.com/hideyukiMORI/nene-swarm/releases/tag/v0.1.0) をベータとして公開しました。Windows Terminal の実機での見え方はまだ確かめていません。画面写真は後で足します。
+🧪 **ベータ版です。** [v0.1.0](https://github.com/hideyukiMORI/nene-swarm/releases/tag/v0.1.0) をベータとして公開しました。このページの画面写真は、Windows Terminal の実機（100×26）で撮ったものです。
 
 🌐 **ブラウザでも動きます。** TypeScript への移植版が [hideyuki-mori.com](https://hideyuki-mori.com/) で動きます。デスクトップの `swarm` を開いてください。この Swift 版と 1 画面ずつ突き合わせてあり、同じ種なら同じ試合になります
 （180,006 画面を比べてすべて一致。移植と突き合わせの中身は [hideyuki-mori-site/swarm](https://github.com/hideyukiMORI/hideyuki-mori-site/tree/main/swarm) にあります）。
@@ -84,6 +86,8 @@ NORMAL の 1 ゲームは平均で **3 分ちょっと**です。慎重なパイ
 - **ハイスコア**: 上位 5 件（得点・パイロット・ステージ・難易度）をタイトルと HUD に出し、`$XDG_STATE_HOME/nene-swarm/`（無ければ `~/.local/state/nene-swarm/`）に残します。
   ファイルを読めない・書けないときは起動中だけの記録で続け、タイトルにそう出します
 
+![タイトル画面。ハイスコアと次のパイロットが出ます](docs/images/title-neon.png)
+
 ## パイロット
 
 タイトルの画面で、次のゲームに乗る 1 名を 4 名から乱数で選びます。避け方も狙い方も、口の悪さもそれぞれです。
@@ -109,6 +113,10 @@ NORMAL の 1 ゲームは平均で **3 分ちょっと**です。慎重なパイ
 `t` で巡ります: `NEON`（既定）・`PHOSPHOR`・`AMBER`・`SYNTHWAVE`・`GLACIER`・`BLOODMOON`・`VAPOR`・`MONO`・`TOXIC`・`GILDED`・`ABYSS`・`PAPER`（唯一の明るいテーマ）。
 どのテーマでも、自機・敵の種類ごと・両方の弾・トーチカ・UFO・爆発は背景に対して 3:1 以上で、自機は敵と同じ色になりません。画面の英数字はすべて 4.5:1 以上です。
 人の目ではなく、実際に描いたセルの色からテストが計算しています。
+
+| ![SYNTHWAVE](docs/images/synthwave.png) | ![PHOSPHOR](docs/images/phosphor.png) |
+| --- | --- |
+| ![BLOODMOON](docs/images/bloodmoon.png) | ![PAPER](docs/images/paper.png) |
 
 ---
 
