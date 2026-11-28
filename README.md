@@ -18,7 +18,7 @@ but you can: press ← → or Space and the ship is yours from that moment; leav
 It is a sibling of [NeNe Gambit](https://github.com/hideyukiMORI/nene-gambit) (chess), [NeNe Reversi](https://github.com/hideyukiMORI/nene-reversi),
 [NeNe Igo](https://github.com/hideyukiMORI/nene-igo) (Go) and [NeNe Poker](https://github.com/hideyukiMORI/nene-poker).
 
-🧪 **Beta.** [v0.1.0](https://github.com/hideyukiMORI/nene-swarm/releases/tag/v0.1.0) is out as a beta: the screenshots on this page are from Windows Terminal at 100×26.
+🧪 **Beta.** [v0.2.0](https://github.com/hideyukiMORI/nene-swarm/releases/tag/v0.2.0) is out as a beta (press an arrow key and it is your turn): the screenshots on this page are from Windows Terminal at 100×26.
 
 🌐 **Try it in your browser.** A TypeScript port runs on [hideyuki-mori.com](https://hideyuki-mori.com/): open `swarm` on the desktop. It is checked against this Swift build frame by frame, and with the same seed it plays the same game
 (180,006 screens compared, every one identical; the port and the check live in [hideyuki-mori-site/swarm](https://github.com/hideyukiMORI/hideyuki-mori-site/tree/main/swarm)).
