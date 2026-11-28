@@ -30,7 +30,7 @@ struct ScreenRendererTests {
     ) -> Grid {
         let state = ScreenState(
             session: session, display: display, difficulty: .normal, seed: 9, highScores: .empty, persona: .sniper,
-            remarks: remark.map { [$0] } ?? [], effects: Effects(), storage: .file)
+            pilot: .autopilot, remarks: remark.map { [$0] } ?? [], effects: Effects(), storage: .file)
         return ScreenRenderer.render(state, size: size)
     }
 
@@ -51,6 +51,22 @@ struct ScreenRendererTests {
         #expect(text.contains("[d] DIFFICULTY NORMAL"))
         #expect(text.contains("NENE//SWARM"))
         #expect(text.contains("STATUS"))
+    }
+
+    /// HUD の PILOT: AI ならパイロットの名前、人なら `YOU` と AI に戻るまでの秒（FR-19・ADR 0013）。
+    @Test(arguments: [0, 400])
+    func thePilotRowShowsWhoIsFlying(_ ticks: Int) {
+        let session = Self.session(ticks: ticks)
+        let auto = Self.text(Self.render(session))
+        #expect(auto.contains("PILOT    SNIPER.ISO"))
+        #expect(!auto.contains("YOU"))
+        let state = ScreenState(
+            session: session, display: Self.boxed, difficulty: .normal, seed: 9, highScores: .empty, persona: .sniper,
+            pilot: .player(secondsLeft: 7), remarks: [], effects: Effects(), storage: .file)
+        let human = Self.text(ScreenRenderer.render(state, size: Self.size))
+        #expect(human.contains("PILOT    YOU AI IN 07"))
+        #expect(!human.contains("PILOT    SNIPER.ISO"))
+        #expect(human.contains("[q] QUIT"))
     }
 
     @Test func theTitleShowsTheHighScoreTable() {
@@ -141,7 +157,7 @@ struct ScreenRendererTests {
             highScores: HighScoreTable(entries: [
                 HighScore(score: 4_321, pilot: "NERVOUS.TMP", stage: 4, difficulty: .easy)
             ]),
-            persona: .nervous, remarks: [older, newer], effects: Effects(), storage: .file)
+            persona: .nervous, pilot: .autopilot, remarks: [older, newer], effects: Effects(), storage: .file)
         let large = Self.text(ScreenRenderer.render(state, size: ScreenRenderer.largeSize))
         #expect(large.contains("HIGH SCORES"))
         #expect(large.contains("0004321  NERVOUS.TMP"))

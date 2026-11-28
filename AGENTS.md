@@ -5,7 +5,7 @@ the normative documents live in [docs/](docs/).
 
 ## Project identity
 
-- Product: NeNe Swarm — a Swift terminal screensaver where a hand-written AI pilot plays a fixed shooter (a marching, diving swarm) forever; one of four pilots flies each game
+- Product: NeNe Swarm — a Swift terminal screensaver where a hand-written AI pilot plays a fixed shooter (a marching, diving swarm) forever; one of four pilots flies each game. Arrow keys / Space / `z` let a human cut in; 30 s without a key hands the ship back to the AI (FR-19, ADR 0013)
 - Language / UI: Swift 6 / terminal (ANSI escapes, no ncurses)
 - Package: `NeNeSwarm` (SwiftPM, Swift 6.4.1 pinned in `.swift-version`, zero external dependencies)
 - Governing principle: **one meaning, one canonical implementation path, enforced by machines**

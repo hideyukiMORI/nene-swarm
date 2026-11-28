@@ -69,6 +69,13 @@ public enum Console {
         }
     }
 
+    /// 押す・離すを両方受け取る方式（Windows Terminal の win32-input-mode）を端末に頼む（FR-19・ADR 0013）。
+    /// 応じない端末はこの列を無視し、キーは文字のまま届く。端末を戻すときに必ず解く（`restoreTerminal`）。
+    /// 移植元: NeNe Bolt `Sources/NeNeBoltTerminal/Console.swift`（コミット 072d08a）。
+    public static func requestKeyReleases() {
+        write(Array("\u{1B}[?9001h".utf8))
+    }
+
     /// 文字列を行頭に書いたときにカーソルが何桁進むかを端末に問い合わせる（カーソル位置の報告 `ESC [ 6 n`）。
     /// 罫線の文字が 1 桁で描かれるかを確かめるために使う（ADR 0011）。0.3 秒以内に答えが無ければ nil。
     public static func columnsAdvanced(by text: String) -> Int? {

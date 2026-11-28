@@ -35,6 +35,7 @@
 | 難易度（difficulty） | EASY・NORMAL・HARD。敵の側（速さ・弾の数・急降下の頻度）だけを変える（FR-14） | `NeNeSwarmCore` |
 | 出来事（event） | 1 刻みで起きたこと（倒した・被弾した・捕まった・救出した・ステージを終えた…）。セリフと演出の入力 | `NeNeSwarmCore` |
 | パイロット（pilot）・性格（persona） | 4 名のキャラクター。避け方・狙い方・迷い・わざと捕まりに行くか・セリフの組（FR-04・FR-15） | `NeNeSwarmEngine` |
+| 人の割り込み・操縦（helm） | 遊びのキーを押した刻みから人が操作し、触れなくなって `handBack` 刻みで AI に戻る（FR-19・ADR 0013） | `NeNeSwarmEngine`（`Helm`）・合成ルート（キーの対応） |
 | パイロットの入力（pilot input） | 左・右・撃つ・待つの閉じた enum。パイロットが Core に返せる唯一のもの | `NeNeSwarmCore` |
 | ハイスコア（high scores） | 上位 5 件。読み書きは合成ルートだけ（FR-02e） | 合成ルート・`NeNeSwarmCore`（並べ方） |
 | シード（seed） | 自前の PRNG の初期値。同じシード・キー入力なしなら同じゲームの列と同じセリフ | 合成ルートが読み、Core と Engine に渡す |

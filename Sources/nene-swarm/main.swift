@@ -47,6 +47,8 @@ let colors: ColorMode = {
 /// 罫線の文字が 1 桁で描かれる端末だけ罫線の枠を使い、それ以外（2 桁・答えが無い）は ASCII の枠へ落とす（Igo の ADR 0011）。
 let traits = TerminalTraits(frame: Console.columnsAdvanced(by: "─") == 1 ? .boxDrawing : .ascii, colors: colors)
 let display = DisplayOptions(theme: options.theme, traits: traits)
+// 罫線の幅を問い合わせた後で頼む（頼んだ後は、端末の答えもキーの列と同じ形で届きうる・ADR 0013）
+Console.requestKeyReleases()
 
 var systemRandom = SystemRandomNumberGenerator()
 var screensaver = Screensaver(options: options, display: display, seed: options.seed ?? systemRandom.next())

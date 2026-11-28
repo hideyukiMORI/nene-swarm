@@ -30,29 +30,36 @@ struct ThemeContrastTests {
     /// 画面のどの場面でも、英数字のセルは前景と背景が 4.5:1 以上（枠の線と記号と流れる星は飾りなので除く。Igo と同じ範囲）。
     @Test(arguments: Theme.catalog)
     func everyCharacterOnScreenIsReadable(_ theme: Theme) {
+        for ticks in [0, 40, 400, 1_500, 4_000] {
+            for pilot in [PilotLabel.autopilot, .player(secondsLeft: 27)] {
+                Self.expectReadable(theme, ticks: ticks, pilot: pilot)
+            }
+        }
+    }
+
+    /// 1 つの場面の画面の英数字を見る（人の番の HUD も同じ基準）。
+    static func expectReadable(_ theme: Theme, ticks: Int, pilot: PilotLabel) {
         let display = DisplayOptions(theme: theme, traits: TerminalTraits(frame: .boxDrawing, colors: .trueColor))
         var effects = Effects()
         effects.absorb([.game(.saucerDestroyed(points: 800, at: Point(x: 100, y: 0)))])
         let remark = Remark(persona: .nervous, cue: .hit, text: "Tell my cache I loved it.")
-        for ticks in [0, 40, 400, 1_500, 4_000] {
-            let session = ScreenRendererTests.session(ticks: ticks)
-            let state = ScreenState(
-                session: session, display: display, difficulty: .hard, seed: 9,
-                highScores: HighScoreTable(entries: [
-                    HighScore(score: 1_234, pilot: "LUCKY.INI", stage: 3, difficulty: .easy)
-                ]),
-                persona: .lucky, remarks: [remark], effects: effects, storage: .memoryOnly)
-            let grid = ScreenRenderer.render(state, size: ScreenRendererTests.size)
-            for row in 0..<grid.size.rows {
-                for column in 0..<grid.size.columns {
-                    let cell = grid[column, row]
-                    guard cell.character.isLetter || cell.character.isNumber else {
-                        continue
-                    }
-                    #expect(
-                        Contrast.ratio(cell.foreground, cell.background) >= 4.5,
-                        "\(theme.name) tick \(ticks) (\(column), \(row)) '\(cell.character)'")
+        let session = ScreenRendererTests.session(ticks: ticks)
+        let state = ScreenState(
+            session: session, display: display, difficulty: .hard, seed: 9,
+            highScores: HighScoreTable(entries: [
+                HighScore(score: 1_234, pilot: "LUCKY.INI", stage: 3, difficulty: .easy)
+            ]),
+            persona: .lucky, pilot: pilot, remarks: [remark], effects: effects, storage: .memoryOnly)
+        let grid = ScreenRenderer.render(state, size: ScreenRendererTests.size)
+        for row in 0..<grid.size.rows {
+            for column in 0..<grid.size.columns {
+                let cell = grid[column, row]
+                guard cell.character.isLetter || cell.character.isNumber else {
+                    continue
                 }
+                #expect(
+                    Contrast.ratio(cell.foreground, cell.background) >= 4.5,
+                    "\(theme.name) tick \(ticks) \(pilot) (\(column), \(row)) '\(cell.character)'")
             }
         }
     }
