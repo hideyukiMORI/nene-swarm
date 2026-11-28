@@ -18,7 +18,7 @@
 [NeNe Gambit](https://github.com/hideyukiMORI/nene-gambit)（チェス）・[NeNe Reversi](https://github.com/hideyukiMORI/nene-reversi)・
 [NeNe Igo](https://github.com/hideyukiMORI/nene-igo)（囲碁）・[NeNe Poker](https://github.com/hideyukiMORI/nene-poker) の兄弟です。
 
-🧪 **ベータ版です。** [v0.1.0](https://github.com/hideyukiMORI/nene-swarm/releases/tag/v0.1.0) をベータとして公開しました。このページの画面写真は、Windows Terminal の実機（100×26）で撮ったものです。
+🧪 **ベータ版です。** [v0.2.0](https://github.com/hideyukiMORI/nene-swarm/releases/tag/v0.2.0) をベータとして公開しました（矢印キーを押すと自分の番になります）。このページの画面写真は、Windows Terminal の実機（100×26）で撮ったものです。
 
 🌐 **ブラウザでも動きます。** TypeScript への移植版が [hideyuki-mori.com](https://hideyuki-mori.com/) で動きます。デスクトップの `swarm` を開いてください。この Swift 版と 1 画面ずつ突き合わせてあり、同じ種なら同じ試合になります
 （180,006 画面を比べてすべて一致。移植と突き合わせの中身は [hideyuki-mori-site/swarm](https://github.com/hideyukiMORI/hideyuki-mori-site/tree/main/swarm) にあります）。
