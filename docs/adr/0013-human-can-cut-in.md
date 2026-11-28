@@ -65,7 +65,7 @@
 - **不能（この PR の中では）**: 「AI だけの画面がブラウザ版の正解と同じ」は、このリポジトリのゲートでは見ない（正解のデータは hideyuki-mori-site にある）。
   この PR では、hideyuki-mori-site の `swarm/golden/generator/main.swift` の刻みのループを `Helm` を通す形（触れない）に直し、`ScreenState` に `pilot: .autopilot` を渡して
   この枝の Core・Engine・Render で作り直し、`swarm/golden/data` と `diff -r` で全く同じ（180,006 画面のハッシュと 16 枚の画面の写し）であることを手で確かめた。ブラウザ版の移植の PR で台本ごと固定する
-- **planned**: Windows Terminal の実機で win32-input-mode が WSL の中まで届き、押しっぱなしで動き・離すと止まること（Bolt の ADR 0007 と同じく、疑似端末はその代わりにならない・QLT-013）
+- **確かめた（2026-11-28・施主・v0.2.0）**: Windows Terminal の実機で win32-input-mode が WSL の中まで届き、押しっぱなしで動き・離すとすぐ止まり・動きながら撃て・30 秒で AI に戻る（Bolt の ADR 0007 と同じく、疑似端末はその代わりにならない・QLT-013）
 
 ## 結果
 
