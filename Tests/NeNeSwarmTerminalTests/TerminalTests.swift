@@ -3,9 +3,9 @@ import Testing
 @testable import NeNeSwarmRender
 @testable import NeNeSwarmTerminal
 
-/// 端末を使わずに確かめられる部分（差分のバイト列・キーの読み取り・256 色への近似）。端末そのものは `make smoke`（ADR 0007）。
+/// 端末を使わずに確かめられる部分（差分のバイト列・256 色への近似。キーの読み取りは `KeyTests`）。端末そのものは `make smoke`（ADR 0007）。
 ///
-/// 移植元: NeNe Igo `Tests/NeNeIgoTerminalTests/TerminalTests.swift`（コミット 3bdae35）。下線のテストを落とし、`d` を足した。
+/// 移植元: NeNe Igo `Tests/NeNeIgoTerminalTests/TerminalTests.swift`（コミット 3bdae35）。下線のテストを落とし、`d` を足した。キーのテストは ADR 0013 で `KeyTests` へ移した。
 struct TerminalTests {
     static let ink = Rgb(red: 200, green: 200, blue: 200)
     static let ground = Rgb(red: 0, green: 0, blue: 0)
@@ -15,15 +15,6 @@ struct TerminalTests {
             ScreenSize(columns: 4, rows: 2), with: Cell(character: " ", foreground: ink, background: ground))
         grid.write(text, column: 0, row: 0, colors: CellColors(foreground: ink, background: ground))
         return grid
-    }
-
-    @Test func keysQuitCycleTheThemeAndTheDifficultyAndOtherKeysAreIgnored() {
-        #expect(KeyIntent.decode(Array("q".utf8)) == [.quit])
-        #expect(KeyIntent.decode(Array("Q".utf8)) == [.quit])
-        #expect(KeyIntent.decode([0x1B, UInt8(ascii: "["), UInt8(ascii: "A"), UInt8(ascii: "q")]) == [.quit])
-        #expect(KeyIntent.decode(Array("xz".utf8)).isEmpty)
-        #expect(KeyIntent.decode(Array("tT".utf8)) == [.cycleTheme, .cycleTheme])
-        #expect(KeyIntent.decode(Array("dD".utf8)) == [.cycleDifficulty, .cycleDifficulty])
     }
 
     @Test func firstFrameClearsTheScreenAndWritesEverything() {

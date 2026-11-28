@@ -295,7 +295,7 @@ PROOFS: list[Proof] = [
           r"swift-strict: SwiftPM かコンパイラが警告を出した"),
     Proof("P49", ["QLT-001"], "端末を戻す列からカーソル表示と alternate screen の終了を消す（make smoke が実際に端末の復元を見て落ちること）",
           lambda r: edit(r, "Sources/NeNeSwarmTerminal/ConsoleState.swift",
-                         'Array("\\u{1B}[0m\\u{1B}[?25h\\u{1B}[?1049l".utf8)', 'Array("\\u{1B}[0m".utf8)'),
+                         'Array("\\u{1B}[?9001l\\u{1B}[0m\\u{1B}[?25h\\u{1B}[?1049l".utf8)', 'Array("\\u{1B}[0m".utf8)'),
           r"smoke: NG  q: 最後に端末を戻す"),
     Proof("P48", ["QLT-001"], "当たり判定のテストの期待する得点を 1 つ変える（make check の中で swift test が実際に回って落ちること）",
           lambda r: edit(r, "Tests/NeNeSwarmCoreTests/CollisionTests.swift", "#expect(game.score == 50)\n", "#expect(game.score == 51)\n"),

@@ -8,13 +8,19 @@ import NeNeSwarmTerminal
 /// 時計を読むのはここだけ。Core は刻みの数しか知らないので、同じシードならキーを押さない限り刻みの速さによらず同じゲームになる。
 /// 移植元: NeNe Igo `Sources/nene-igo/Screensaver.swift`（コミット 3bdae35）。1 手ごとの締め切りを、決まった間隔の刻みに替えた。
 /// パイロットは TITLE に入るたびに 4 名から乱数で選び、次のゲームに乗せる（Q4・ADR 0008）。
+///
+/// 人と AI は同じ `PilotInput` を同じ `Session.step` に渡す（FR-19・ADR 0013）。誰が操作するかは `Helm` が刻みの数で決める。
+/// 遊びのキーに一度も触れなければ、乱数の引き方も画面も人の操作を入れる前と同じになる（ブラウザ版が全コマ突き合わせている）。
 struct Screensaver {
     /// 描くのが遅れたときに追いつく刻みの上限（それ以上は捨てて、いまから数え直す）。
     private static let maxCatchUp = 4
+    /// 人が 1 度でも操作したゲームのハイスコアの名前（FR-19。NeNe Bolt の FR-02g と同じ）。
+    private static let playerName = "PLAYER"
 
     private let options: LaunchOptions
     private let seed: UInt64
     private let clock = ContinuousClock()
+    private let started: ContinuousClock.Instant
     private var generator: SplitMix64
     private var pilotGenerator: SplitMix64
     private var persona: Persona
@@ -22,6 +28,9 @@ struct Screensaver {
     private var banter = Banter()
     private var effects = Effects()
     private var banterGenerator: SplitMix64
+    private var controls = Controls()
+    private var helm: Helm
+    private var humanPlayedThisGame = false
     private var session: Session
     private var display: DisplayOptions
     private var difficulty: Difficulty
@@ -33,6 +42,8 @@ struct Screensaver {
         self.options = options
         self.display = display
         self.seed = seed
+        started = clock.now
+        helm = Helm(handBack: options.handBackTicks)
         difficulty = options.difficulty
         generator = SplitMix64(seed: seed)
         pilotGenerator = SplitMix64(seed: seed ^ 0x5357_4152_4D21)
@@ -54,12 +65,13 @@ struct Screensaver {
         var next = clock.now + options.tickInterval
         draw()
         while true {
-            let intents = KeyIntent.decode(Console.waitForInput(milliseconds: milliseconds(until: next)))
+            let bytes = Console.waitForInput(milliseconds: milliseconds(until: next))
+            let commands = controls.receive(bytes, at: now)
             let signals = Console.takeSignals()
-            if signals.interrupted || intents.contains(.quit) {
+            if signals.interrupted || commands.contains(.quit) {
                 return
             }
-            apply(intents)
+            apply(commands)
             if signals.resized {
                 previous = nil
             }
@@ -76,9 +88,9 @@ struct Screensaver {
         }
     }
 
-    private mutating func apply(_ intents: [KeyIntent]) {
-        for intent in intents {
-            switch intent {
+    private mutating func apply(_ commands: [Controls.Command]) {
+        for command in commands {
+            switch command {
             case .quit:
                 return
             case .cycleTheme:
@@ -89,11 +101,20 @@ struct Screensaver {
         }
     }
 
-    /// 1 刻み進める。PLAY の間だけパイロットが入力を決める。出来事はハイスコアとセリフに渡す。
+    /// 1 刻み進める。PLAY の間だけ、人か AI のどちらかが入力を決める。出来事はハイスコアとセリフに渡す。
+    ///
+    /// 人の番の間はパイロットを呼ばない（パイロットの乱数を引かない）。人が触れなければ、前と同じ順に同じ乱数を引く。
     private mutating func tick() {
+        let human = controls.take(at: now)
+        helm.advance(touched: human != nil)
         var input = PilotInput.idle
         if case .play(let game) = session.scene {
-            input = pilot.input(for: game, difficulty: difficulty, using: &pilotGenerator)
+            if helm.isHuman {
+                input = human ?? .idle
+                humanPlayedThisGame = true
+            } else {
+                input = pilot.input(for: game, difficulty: difficulty, using: &pilotGenerator)
+            }
         }
         let step = session.step(input, difficulty: difficulty, using: &generator)
         var newRecord = false
@@ -115,9 +136,11 @@ struct Screensaver {
         switch event {
         case .gameStarted:
             pilot = Pilot(persona: persona)
+            humanPlayedThisGame = false
         case .gameEnded(let summary):
+            let name = humanPlayedThisGame ? Self.playerName : persona.name
             let entry = HighScore(
-                score: summary.score, pilot: persona.name, stage: summary.stage.number, difficulty: summary.difficulty)
+                score: summary.score, pilot: name, stage: summary.stage.number, difficulty: summary.difficulty)
             let insertion = highScores.inserting(entry)
             highScores = insertion.table
             if case .file = storage, !ScoreStore.save(highScores) {
@@ -135,12 +158,19 @@ struct Screensaver {
 
     /// いまの状態を描き、前のフレームとの差分だけを 1 回で書く。
     private mutating func draw() {
+        let label: PilotLabel = helm.isHuman ? .player(secondsLeft: options.seconds(ticks: helm.ticksLeft)) : .autopilot
         let state = ScreenState(
             session: session, display: display, difficulty: difficulty, seed: seed, highScores: highScores,
-            persona: persona, remarks: banter.lines, effects: effects, storage: storage)
+            persona: persona, pilot: label, remarks: banter.lines, effects: effects, storage: storage)
         let grid = ScreenRenderer.render(state, size: Console.size())
         Console.write(FrameEncoder.encode(grid, previous: previous, colors: display.traits.colors))
         previous = grid
+    }
+
+    /// 起動からのミリ秒（`HeldKeys` が押しっぱなしを推し量るのに使う）。
+    private var now: Int {
+        let (seconds, attoseconds) = (clock.now - started).components
+        return Int(seconds * 1000 + attoseconds / 1_000_000_000_000_000)
     }
 
     /// 締め切りまでのミリ秒（過ぎていれば 0）。

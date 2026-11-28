@@ -15,6 +15,8 @@ public struct ScreenState: Sendable {
     public let highScores: HighScoreTable
     /// 乗っている（TITLE では次に乗る）パイロット。
     public let persona: Persona
+    /// 誰が自機を操作しているか（HUD の PILOT）。
+    public let pilot: PilotLabel
     /// 直近のセリフ（古い順・最大 2 つ）。
     public let remarks: [Remark]
     /// 画面の演出。
@@ -25,7 +27,7 @@ public struct ScreenState: Sendable {
     /// 組を作る。
     public init(
         session: Session, display: DisplayOptions, difficulty: Difficulty, seed: UInt64, highScores: HighScoreTable,
-        persona: Persona, remarks: [Remark],
+        persona: Persona, pilot: PilotLabel, remarks: [Remark],
         effects: Effects, storage: ScoreStorage
     ) {
         self.session = session
@@ -34,6 +36,7 @@ public struct ScreenState: Sendable {
         self.seed = seed
         self.highScores = highScores
         self.persona = persona
+        self.pilot = pilot
         self.remarks = remarks
         self.effects = effects
         self.storage = storage

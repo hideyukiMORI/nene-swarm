@@ -4,7 +4,7 @@ import NeNeSwarmRender
 /// 起動オプション（ARC-008: 境界で 1 度だけ検証し、型に変えてから中へ渡す）。
 ///
 /// `--seed <0 以上の整数>` / `--theme <名前>` / `--difficulty easy|normal|hard` / `--tick-rate <1 秒の刻みの数>` /
-/// `--title-pause <秒>` / `--game-over-pause <秒>`（FR-11・FR-13・FR-14）。
+/// `--title-pause <秒>` / `--game-over-pause <秒>` / `--hand-back <秒>`（FR-11・FR-13・FR-14・FR-19）。
 /// 移植元: NeNe Igo `Sources/nene-igo/LaunchOptions.swift`（コミット 3bdae35）。難易度・刻みの速さ・場面の長さに替えた。
 struct LaunchOptions {
     /// 乱数のシード。与えられなければ nil（起動時にシステムの乱数から決める）。
@@ -17,6 +17,8 @@ struct LaunchOptions {
     var titlePause = 5000
     /// GAME OVER を見せる時間（ミリ秒）。
     var gameOverPause = 4000
+    /// 人が遊びのキーに触れなくなってから AI に戻るまでの時間（ミリ秒・FR-19。NeNe Bolt の `--hand-back` と同じ）。
+    var handBack = 30_000
 
     /// 起動オプションを読む（プログラム名を除いた引数）。
     static func parse(_ arguments: [String]) -> LaunchParsing {
@@ -28,7 +30,8 @@ struct LaunchOptions {
             }
             guard let next = options.setting(name, value) else {
                 return .rejected(
-                    "読めないオプション: \(name) \(value)（--seed / --theme / --difficulty / --tick-rate / --title-pause / --game-over-pause）"
+                    "読めないオプション: \(name) \(value)（--seed / --theme / --difficulty / --tick-rate / --title-pause / "
+                        + "--game-over-pause / --hand-back）"
                 )
             }
             options = next
@@ -47,6 +50,16 @@ struct LaunchOptions {
             titleTicks: max(1, titlePause * tickRate / 1000), gameOverTicks: max(1, gameOverPause * tickRate / 1000))
     }
 
+    /// AI に戻るまでの時間を刻みの数に直したもの（1 刻み以上）。
+    var handBackTicks: Int {
+        max(1, handBack * tickRate / 1000)
+    }
+
+    /// 残りの刻みを、画面に出す秒に直したもの（切り上げ）。
+    func seconds(ticks: Int) -> Int {
+        (ticks * 1000 / tickRate + 999) / 1000
+    }
+
     /// 文字列で分岐するので `switch` ではなく `if` で書く（SWF-002: 全捕捉を書かない）。
     private func setting(_ name: String, _ value: String) -> LaunchOptions? {
         var next = self
@@ -62,6 +75,8 @@ struct LaunchOptions {
             next.titlePause = pause
         } else if name == "--game-over-pause", let pause = Self.milliseconds(value) {
             next.gameOverPause = pause
+        } else if name == "--hand-back", let pause = Self.milliseconds(value) {
+            next.handBack = pause
         } else {
             return nil
         }

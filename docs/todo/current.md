@@ -19,11 +19,12 @@
 | Phase 3-5c ハイスコアのファイル・大きな端末の配置 | ✅ 2026-10-27（Issue #13・ADR 0011） |
 | Phase 4 公開の準備 | ✅ 2026-10-27（Issue #15・ADR 0012・`make release` は再現可能） |
 | Phase 4 公開（v0.1.0・ベータ） | ✅ 2026-10-27（Q14・再ダウンロードの照合と install.sh の導入と smoke を確かめた） |
+| 人の割り込み（FR-19・Q15） | ✅ 2026-11-28（Issue #24・ADR 0013・smoke。Windows Terminal の実機での押す・離すは未確認。Release は施主の手番） |
 
 ## 動くもの
 
 - `make check`（道具の版・`swift build`・整形・lint・規約検査とその単体テスト・`swift test -c release`・smoke・コミットの形）
-- `nene-swarm`: キャスト 4 名（BLASTER.BIN・NERVOUS.TMP・LUCKY.INI・SNIPER.ISO）が毎ゲーム 1 名乗り、TITLE → PLAY → GAME OVER を 80 × 24 に描き続ける。`q` / `t` / `d`
+- `nene-swarm`: キャスト 4 名（BLASTER.BIN・NERVOUS.TMP・LUCKY.INI・SNIPER.ISO）が毎ゲーム 1 名乗り、TITLE → PLAY → GAME OVER を 80 × 24 に描き続ける。`q` / `t` / `d`。← → と Space・`z` で人が割り込み、30 秒触らなければ AI に戻る
 - Core: 隊列・急降下・弾（飛び越えない）・トーチカ・捕獲と救出と 2 機並び・UFO・ボーナスステージ・場面・難易度・ハイスコアの並べ方
 
 ## 動かないもの
@@ -31,6 +32,7 @@
 - `main` への直接 push・force push が拒まれることは試していない（ruleset の読み戻しと PR の `BLOCKED` で代えた・gate-proofs 第 4 節）
 - `install.ps1` の 1 行からの導入（PowerShell 側）は未確認
 - Windows Terminal での見え方の確認（Phase 3-3。撮影の権限待ち）
+- Windows Terminal の実機で win32-input-mode の押す・離すが WSL の中まで届くか（ADR 0013。疑似端末でしか見ていない）
 
 ## 次の 1 手
 

@@ -9,7 +9,8 @@ struct ConsoleState {
 /// 端末の退避値の唯一の置き場。書くのは `Console.open` と `restoreTerminal` だけ。
 nonisolated(unsafe) var consoleState = ConsoleState()
 
-private let restoreSequence: [UInt8] = Array("\u{1B}[0m\u{1B}[?25h\u{1B}[?1049l".utf8)
+/// win32-input-mode（`?9001`・ADR 0013）を解いてから色・カーソル・alternate screen を戻す。
+private let restoreSequence: [UInt8] = Array("\u{1B}[?9001l\u{1B}[0m\u{1B}[?25h\u{1B}[?1049l".utf8)
 
 /// 端末を戻す。シグナルハンドラからも呼ぶので、メモリを確保しない呼び出し（write と tcsetattr）だけを使う。
 func restoreTerminal() {

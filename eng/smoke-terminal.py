@@ -7,6 +7,8 @@
 - alternate screen に入り、24 ビットの色で盤面と HUD（`GAME 001`）を描く
 - `t` で次のテーマ（PHOSPHOR）に、`d` で次の難易度（HARD）に替わる
 - 場面が TITLE から PLAY（HUD の `HOSTILES`）へ進む
+- 遊びのキーを押さなければ HUD の PILOT はパイロットの名前のまま。矢印キー・`z`・win32-input-mode の列で人の操作に替わり（`YOU AI IN`）、
+  `--hand-back` の秒だけ触らなければ AI に戻る。win32-input-mode を頼み、その列で届いた `q` と Ctrl+C でも終わる（FR-19・ADR 0013）
 - 罫線の幅の問い合わせに答えない端末（この疑似端末）では ASCII の枠に落ちる
 - `q`・Ctrl+C・SIGTERM のどれで終わっても exit 0 で、出力の最後が端末を戻す列で、termios の lflag が起動前と同じ
 - SIGSEGV（異常終了）でも端末を戻してから、そのシグナルで死ぬ
@@ -38,7 +40,7 @@ ENTER, LEAVE, SHOW, GAME = "\x1b[?1049h", "\x1b[?1049l", "\x1b[?25h", "GAME 001"
 
 
 def run(binary: str, keys: list[bytes], send: int | None = None, shrink: bool = False,
-        state: str = "", title: float = 0.5) -> tuple[str, int, bool]:
+        state: str = "", title: float = 0.5, extra: tuple[str, ...] = ()) -> tuple[str, int, bool]:
     master, slave = pty.openpty()
     fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack("HHHH", 24, 80, 0, 0))
     before = termios.tcgetattr(slave)
@@ -50,7 +52,7 @@ def run(binary: str, keys: list[bytes], send: int | None = None, shrink: bool = 
             os.dup2(slave, fd)
         # ハイスコアの置き場は一時ディレクトリにする（利用者の ~/.local/state に書かない）
         env = dict(os.environ, COLORTERM="truecolor", XDG_STATE_HOME=state or tempfile.mkdtemp(prefix="swarm-smoke-"))
-        os.execve(binary, [binary, "--seed", "1", "--title-pause", str(title)], env)
+        os.execve(binary, [binary, "--seed", "1", "--title-pause", str(title), *extra], env)
     chunks: list[bytes] = []
 
     def pump(seconds: float) -> None:
@@ -140,8 +142,13 @@ def main() -> int:
         ("SIGTERM", [], signal.SIGTERM, ("exit", 0)),
         ("SIGSEGV", [], signal.SIGSEGV, ("signal", signal.SIGSEGV)),
         ("resize", [b"q"], None, ("exit", 0)),
+        ("keys", [b"\x1b[D", b"q"], None, ("exit", 0)),
+        ("win32", [b"\x1b[39;77;0;1;0;1_", b"\x1b[39;77;0;0;0;1_", b"\x1b[81;16;113;1;0;1_"], None, ("exit", 0)),
+        ("win32 Ctrl+C", [b"\x1b[67;46;3;1;8;1_"], None, ("exit", 0)),
+        ("hand-back", [b"z", b"q"], None, ("exit", 0)),
     ):
-        text, status, restored = run(binary, keys, send, shrink=label == "resize")
+        extra = ("--hand-back", "0.5") if label == "hand-back" else ()
+        text, status, restored = run(binary, keys, send, shrink=label == "resize", extra=extra)
         actual = ("exit", os.WEXITSTATUS(status)) if os.WIFEXITED(status) else ("signal", os.WTERMSIG(status))
         check(f"{label}: 終わり方 {actual}", actual == expect, failures)
         check(f"{label}: alternate screen に入って盤面と HUD を 24 ビットの色で描く",
@@ -156,6 +163,16 @@ def main() -> int:
             check("d: 次の難易度（HARD）に替わる", "DIFFICULTY HARD" in last and "LEVEL    HARD" in last, failures)
             check("TITLE から PLAY へ進む（HUD に HOSTILES が出る）", "HOSTILES" in plain, failures)
             check("幅の問い合わせに答えない端末では ASCII の枠に落ちる", "+-[ STATUS ]" in plain and "┌" not in plain, failures)
+            check("遊びのキーを押さなければ AI が遊ぶ（PILOT にパイロットの名前）",
+                  re.search(r"PILOT    [A-Z]+\.[A-Z]+", last) is not None and "YOU" not in plain, failures)
+            check("押す・離すの方式（win32-input-mode）を端末に頼む", "\x1b[?9001h" in text, failures)
+        if label in ("keys", "win32"):
+            last = "\n".join(screen(text[: text.rfind(LEAVE)]))
+            check(f"{label}: 遊びのキーで人の操作に替わる（PILOT に YOU AI IN）", re.search(r"PILOT    YOU AI IN (2[89]|30)", last) is not None, failures)
+        if label == "hand-back":
+            last = "\n".join(screen(text[: text.rfind(LEAVE)]))
+            check("hand-back: z で人に替わり、触らなければ AI に戻る",
+                  "YOU AI IN" in plain and re.search(r"PILOT    [A-Z]+\.[A-Z]+", last) is not None, failures)
         if label == "resize":
             check("resize: 小さくすると 1 行の文言を出し、戻すと画面を描き直す",
                   "TERMINAL TOO SMALL" in text and text.rfind(GAME) > text.find("TERMINAL TOO SMALL"), failures)

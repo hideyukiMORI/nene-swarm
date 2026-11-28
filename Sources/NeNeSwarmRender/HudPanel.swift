@@ -34,9 +34,20 @@ struct HudPanel {
             pair("STAGE", Wording.digits(game?.stage.number ?? 1, 2)),
             pair("SHIPS", ships(game)),
             pair("LEVEL", Wording.difficulty(state.difficulty)),
-            pair("PILOT", state.persona.name),
+            pilot(),
             pair("GAME", Wording.digits(state.gameNumber, 3)),
         ]
+    }
+
+    /// PILOT の行。AI ならパイロットの名前、人なら `YOU` と AI に戻るまでの秒（`YOU AI IN 27`・FR-19）。
+    private func pilot() -> [Segment] {
+        switch state.pilot {
+        case .autopilot:
+            return pair("PILOT", state.persona.name)
+        case .player(let secondsLeft):
+            return pair("PILOT", "")
+                + [Segment("YOU", theme.accentAlt), Segment(" AI IN " + Wording.digits(secondsLeft, 2), theme.text)]
+        }
     }
 
     private func intel() -> [[Segment]] {

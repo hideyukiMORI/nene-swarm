@@ -1,10 +1,11 @@
 # NeNe Swarm
 
-> *An AI pilot plays a fixed shooter in your terminal. Forever. Press `q` to make it stop.*
+> *An AI pilot plays a fixed shooter in your terminal. Forever. Press an arrow key and it's your turn; press `q` to make it stop.*
 
 A terminal screensaver in which a hand-written AI pilot flies against a marching, diving swarm: breakable shields, a capture beam,
 a bonus saucer, bonus stages and a top-five high score. Title, play, game over, and around again.
-Four pilots take turns, and each one grumbles, jokes and gloats in its own voice the whole time. You don't have to do anything.
+Four pilots take turns, and each one grumbles, jokes and gloats in its own voice the whole time. You don't have to do anything,
+but you can: press ← → or Space and the ship is yours from that moment; leave the keys alone for 30 seconds and the AI takes it back.
 
 [![release](https://img.shields.io/github/v/release/hideyukiMORI/nene-swarm)](https://github.com/hideyukiMORI/nene-swarm/releases/latest)
 ![platform](https://img.shields.io/badge/platform-Linux%20x86__64%20%2F%20WSL2-555)
@@ -47,7 +48,7 @@ It runs the same installer inside your default WSL distribution, then puts a sma
 so `nene-swarm` works from PowerShell and cmd too. Set `NENE_SWARM_DISTRO` to use another distribution.
 To uninstall: delete `%LOCALAPPDATA%\nene-swarm`, remove it from your PATH, and run `wsl rm ~/.local/bin/nene-swarm`
 
-## How to watch
+## How to watch (and how to cut in)
 
 ```bash
 nene-swarm
@@ -55,6 +56,8 @@ nene-swarm
 
 | Key | |
 | --- | --- |
+| `←` `→` | Take the ship and move it. The HUD's PILOT line turns into `YOU AI IN 30`: 30 seconds after your last key, the AI pilot takes over again |
+| `Space` / `z` | Take the ship and fire (hold to keep firing) |
 | `q` | Quit (Ctrl+C works too; however it ends, your terminal is restored) |
 | `t` | Next color theme (12 in total) |
 | `d` | Next difficulty: `EASY`, `NORMAL`, `HARD`. It applies at once, to the enemies only; the pilot's skill never changes |
@@ -66,10 +69,14 @@ nene-swarm
 | `--seed N` | Same seed, same games, **same lines** (as long as you press no keys) |
 | `--tick-rate N` | Game steps per second, 10 to 60 (default 30). The game itself is counted in steps, so the same seed plays the same game at any speed |
 | `--title-pause SEC` / `--game-over-pause SEC` | How long the title and game over screens stay up (default 5 s and 4 s) |
+| `--hand-back SEC` | How long after your last key the AI takes the ship back (default 30 s) |
 | `--version` | Print the version and exit |
 
 The terminal needs at least **80×24**. At **100×26 or larger** the HUD gets wider, shows the high-score table, and the last two lines of COMMS run under the field
 (Windows Terminal's default 120×30 is enough). If the window is too small, it tells you, in one line, how big it needs to be.
+
+In Windows Terminal the game receives both key presses and releases, so holding a key keeps the ship moving and letting go stops it.
+Other terminals only send the key repeat; there the ship keeps going for a moment after you let go. A game you touched goes into the high scores as `PLAYER`.
 
 A NORMAL game lasts **a little over three minutes** on average; the careful pilots last about four, the reckless ones about two and a half.
 
